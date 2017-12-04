@@ -22,6 +22,7 @@
 		42C1684F1FD4D0B6007D96AD /* URLSession + Bitso tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */; };
 		42C168501FD4D0B6007D96AD /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168441FD4D0B6007D96AD /* Book.swift */; };
 		42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168451FD4D0B6007D96AD /* BooksResponse.swift */; };
+		42C168531FD4D2E8007D96AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42C168521FD4D2E8007D96AD /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession + Bitso tasks.swift"; sourceTree = "<group>"; };
 		42C168441FD4D0B6007D96AD /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		42C168451FD4D0B6007D96AD /* BooksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksResponse.swift; sourceTree = "<group>"; };
+		42C168521FD4D2E8007D96AD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		42C168121FD4D095007D96AD = {
 			isa = PBXGroup;
 			children = (
+				42C168521FD4D2E8007D96AD /* README.md */,
 				42C1681E1FD4D095007D96AD /* Bitso */,
 				42C168291FD4D095007D96AD /* BitsoTests */,
 				42C1681D1FD4D095007D96AD /* Products */,
@@ -248,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C168531FD4D2E8007D96AD /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
