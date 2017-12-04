@@ -11,26 +11,30 @@ import XCTest
 
 class BitsoTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    //TODO: Private API interaction
+    //TODO: Error codes
+    //TODO: Remove integration test
+    func testIntegration() {
+        let integrationTest = expectation(description: "fulfill integration test")
+        let task1 = URLSession.shared.booksTask { (books) in
+            let task2 = URLSession.shared.tradesTask(with: books!.payload!.first!, completion: { (trades) in
+                trades?.payload?.forEach({ (trade) in
+                    print("""
+                        Book: \(trade.book!)
+                        Trade: \(trade.tid!)
+                        Amount: \(trade.amount!)
+                        Price: \(trade.price!)
+                        Created at: \(trade.created_at!)
+                        """)
+                })
+                integrationTest.fulfill()
+            })
+            task2.resume()
         }
+        task1.resume()
+        
+        wait(for: [integrationTest], timeout: 30.0)
     }
+
     
 }

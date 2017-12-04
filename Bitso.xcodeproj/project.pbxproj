@@ -10,6 +10,18 @@
 		42C168261FD4D095007D96AD /* Bitso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C1681C1FD4D095007D96AD /* Bitso.framework */; };
 		42C1682B1FD4D095007D96AD /* BitsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1682A1FD4D095007D96AD /* BitsoTests.swift */; };
 		42C1682D1FD4D095007D96AD /* Bitso.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C1681F1FD4D095007D96AD /* Bitso.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		42C168461FD4D0B6007D96AD /* Ask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168371FD4D0B6007D96AD /* Ask.swift */; };
+		42C168471FD4D0B6007D96AD /* Bid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168381FD4D0B6007D96AD /* Bid.swift */; };
+		42C168481FD4D0B6007D96AD /* OrderBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168391FD4D0B6007D96AD /* OrderBook.swift */; };
+		42C168491FD4D0B6007D96AD /* OrderBookResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683A1FD4D0B6007D96AD /* OrderBookResponse.swift */; };
+		42C1684A1FD4D0B6007D96AD /* Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683C1FD4D0B6007D96AD /* Ticker.swift */; };
+		42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */; };
+		42C1684C1FD4D0B6007D96AD /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683F1FD4D0B6007D96AD /* Trade.swift */; };
+		42C1684D1FD4D0B6007D96AD /* TradesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168401FD4D0B6007D96AD /* TradesResponse.swift */; };
+		42C1684E1FD4D0B6007D96AD /* URL + Bitso endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168411FD4D0B6007D96AD /* URL + Bitso endpoints.swift */; };
+		42C1684F1FD4D0B6007D96AD /* URLSession + Bitso tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */; };
+		42C168501FD4D0B6007D96AD /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168441FD4D0B6007D96AD /* Book.swift */; };
+		42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168451FD4D0B6007D96AD /* BooksResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +41,18 @@
 		42C168251FD4D095007D96AD /* BitsoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BitsoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C1682A1FD4D095007D96AD /* BitsoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitsoTests.swift; sourceTree = "<group>"; };
 		42C1682C1FD4D095007D96AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42C168371FD4D0B6007D96AD /* Ask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ask.swift; sourceTree = "<group>"; };
+		42C168381FD4D0B6007D96AD /* Bid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bid.swift; sourceTree = "<group>"; };
+		42C168391FD4D0B6007D96AD /* OrderBook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderBook.swift; sourceTree = "<group>"; };
+		42C1683A1FD4D0B6007D96AD /* OrderBookResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderBookResponse.swift; sourceTree = "<group>"; };
+		42C1683C1FD4D0B6007D96AD /* Ticker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ticker.swift; sourceTree = "<group>"; };
+		42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
+		42C1683F1FD4D0B6007D96AD /* Trade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
+		42C168401FD4D0B6007D96AD /* TradesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesResponse.swift; sourceTree = "<group>"; };
+		42C168411FD4D0B6007D96AD /* URL + Bitso endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL + Bitso endpoints.swift"; sourceTree = "<group>"; };
+		42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession + Bitso tasks.swift"; sourceTree = "<group>"; };
+		42C168441FD4D0B6007D96AD /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
+		42C168451FD4D0B6007D96AD /* BooksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +96,12 @@
 			isa = PBXGroup;
 			children = (
 				42C1681F1FD4D095007D96AD /* Bitso.h */,
+				42C168411FD4D0B6007D96AD /* URL + Bitso endpoints.swift */,
+				42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */,
+				42C168431FD4D0B6007D96AD /* Books */,
+				42C168361FD4D0B6007D96AD /* OrderBook */,
+				42C1683B1FD4D0B6007D96AD /* Ticker */,
+				42C1683E1FD4D0B6007D96AD /* Trades */,
 				42C168201FD4D095007D96AD /* Info.plist */,
 			);
 			path = Bitso;
@@ -84,6 +114,44 @@
 				42C1682C1FD4D095007D96AD /* Info.plist */,
 			);
 			path = BitsoTests;
+			sourceTree = "<group>";
+		};
+		42C168361FD4D0B6007D96AD /* OrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				42C168371FD4D0B6007D96AD /* Ask.swift */,
+				42C168381FD4D0B6007D96AD /* Bid.swift */,
+				42C168391FD4D0B6007D96AD /* OrderBook.swift */,
+				42C1683A1FD4D0B6007D96AD /* OrderBookResponse.swift */,
+			);
+			path = OrderBook;
+			sourceTree = "<group>";
+		};
+		42C1683B1FD4D0B6007D96AD /* Ticker */ = {
+			isa = PBXGroup;
+			children = (
+				42C1683C1FD4D0B6007D96AD /* Ticker.swift */,
+				42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */,
+			);
+			path = Ticker;
+			sourceTree = "<group>";
+		};
+		42C1683E1FD4D0B6007D96AD /* Trades */ = {
+			isa = PBXGroup;
+			children = (
+				42C1683F1FD4D0B6007D96AD /* Trade.swift */,
+				42C168401FD4D0B6007D96AD /* TradesResponse.swift */,
+			);
+			path = Trades;
+			sourceTree = "<group>";
+		};
+		42C168431FD4D0B6007D96AD /* Books */ = {
+			isa = PBXGroup;
+			children = (
+				42C168441FD4D0B6007D96AD /* Book.swift */,
+				42C168451FD4D0B6007D96AD /* BooksResponse.swift */,
+			);
+			path = Books;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +216,7 @@
 				TargetAttributes = {
 					42C1681B1FD4D095007D96AD = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					42C168241FD4D095007D96AD = {
@@ -196,6 +265,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C1684C1FD4D0B6007D96AD /* Trade.swift in Sources */,
+				42C1684D1FD4D0B6007D96AD /* TradesResponse.swift in Sources */,
+				42C168491FD4D0B6007D96AD /* OrderBookResponse.swift in Sources */,
+				42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */,
+				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
+				42C168461FD4D0B6007D96AD /* Ask.swift in Sources */,
+				42C1684F1FD4D0B6007D96AD /* URLSession + Bitso tasks.swift in Sources */,
+				42C1684A1FD4D0B6007D96AD /* Ticker.swift in Sources */,
+				42C168481FD4D0B6007D96AD /* OrderBook.swift in Sources */,
+				42C1684E1FD4D0B6007D96AD /* URL + Bitso endpoints.swift in Sources */,
+				42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */,
+				42C168471FD4D0B6007D96AD /* Bid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +415,7 @@
 		42C168311FD4D095007D96AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -346,6 +428,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.julio.Bitso;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +437,7 @@
 		42C168321FD4D095007D96AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +458,7 @@
 		42C168341FD4D095007D96AD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BitsoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -387,6 +472,7 @@
 		42C168351FD4D095007D96AD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BitsoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
