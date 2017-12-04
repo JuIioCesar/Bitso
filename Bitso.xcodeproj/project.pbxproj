@@ -18,8 +18,7 @@
 		42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */; };
 		42C1684C1FD4D0B6007D96AD /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683F1FD4D0B6007D96AD /* Trade.swift */; };
 		42C1684D1FD4D0B6007D96AD /* TradesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168401FD4D0B6007D96AD /* TradesResponse.swift */; };
-		42C1684E1FD4D0B6007D96AD /* URL + Bitso endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168411FD4D0B6007D96AD /* URL + Bitso endpoints.swift */; };
-		42C1684F1FD4D0B6007D96AD /* URLSession + Bitso tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */; };
+		42C1684F1FD4D0B6007D96AD /* Public Rest API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168421FD4D0B6007D96AD /* Public Rest API.swift */; };
 		42C168501FD4D0B6007D96AD /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168441FD4D0B6007D96AD /* Book.swift */; };
 		42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168451FD4D0B6007D96AD /* BooksResponse.swift */; };
 		42C168531FD4D2E8007D96AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42C168521FD4D2E8007D96AD /* README.md */; };
@@ -50,8 +49,7 @@
 		42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		42C1683F1FD4D0B6007D96AD /* Trade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		42C168401FD4D0B6007D96AD /* TradesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesResponse.swift; sourceTree = "<group>"; };
-		42C168411FD4D0B6007D96AD /* URL + Bitso endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL + Bitso endpoints.swift"; sourceTree = "<group>"; };
-		42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URLSession + Bitso tasks.swift"; sourceTree = "<group>"; };
+		42C168421FD4D0B6007D96AD /* Public Rest API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Public Rest API.swift"; sourceTree = "<group>"; };
 		42C168441FD4D0B6007D96AD /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		42C168451FD4D0B6007D96AD /* BooksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksResponse.swift; sourceTree = "<group>"; };
 		42C168521FD4D2E8007D96AD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -99,8 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				42C1681F1FD4D095007D96AD /* Bitso.h */,
-				42C168411FD4D0B6007D96AD /* URL + Bitso endpoints.swift */,
-				42C168421FD4D0B6007D96AD /* URLSession + Bitso tasks.swift */,
+				42C168421FD4D0B6007D96AD /* Public Rest API.swift */,
 				42C168431FD4D0B6007D96AD /* Books */,
 				42C168361FD4D0B6007D96AD /* OrderBook */,
 				42C1683B1FD4D0B6007D96AD /* Ticker */,
@@ -275,10 +272,9 @@
 				42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */,
 				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
 				42C168461FD4D0B6007D96AD /* Ask.swift in Sources */,
-				42C1684F1FD4D0B6007D96AD /* URLSession + Bitso tasks.swift in Sources */,
+				42C1684F1FD4D0B6007D96AD /* Public Rest API.swift in Sources */,
 				42C1684A1FD4D0B6007D96AD /* Ticker.swift in Sources */,
 				42C168481FD4D0B6007D96AD /* OrderBook.swift in Sources */,
-				42C1684E1FD4D0B6007D96AD /* URL + Bitso endpoints.swift in Sources */,
 				42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */,
 				42C168471FD4D0B6007D96AD /* Bid.swift in Sources */,
 			);
