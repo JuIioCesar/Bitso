@@ -91,7 +91,7 @@ private extension URL {
 }
 
 extension URL {
-    static let books = URL(string: URL.BitsoDevelopment + "available_books/")!
+    static let books = URL(string: URL.BitsoDevelopment + Endpoint.Public.availableBooks.rawValue)!
 }
 
 extension URLSession {
