@@ -1,6 +1,28 @@
 ![](Assets/banner.png?raw=true)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
+### How to use
+
+The Bitso framework allows you to create URLSessionTasks that return bitso API models such as `Orders`, `Books`, `Ticker`, and `Trades`.
+
+```
+let booksTask = URLSession.shared.booksTask { (books) in
+    let tradesTask = URLSession.shared.tradesTask(with: books!.payload.first!, completion: { (trades) in
+        trades?.payload.forEach({ (trade) in
+        print("""
+            Book: \(trade.book)
+            Trade: \(trade.tid)
+            Amount: \(trade.amount)
+            Price: \(trade.price)
+            Created at: \(trade.created_at)
+            """)
+            })
+        })
+    tradesTask.resume()
+}
+booksTask.resume()
+```
+
 ### How to contribute
 
 **API Response Models**
@@ -22,9 +44,11 @@ The workflow for adding endpoints it's mostly automated and it's the next one:
 12. Raise a Pull Request
 
 **Refactoring**
+
 The `Public Rest API.swift` file is a mess. I could use some cleaning.
 
 To build the models I usually use: http://www.json4swift.com with the latest Swift 4 Codeable Mapping
 
 **Contributors**
+
 Julio César Guzmán Villanueva
