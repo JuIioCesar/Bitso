@@ -84,7 +84,10 @@ extension URLSession {
 }
 
 private extension URL {
-    static let BitsoDevelopment = "https://api.bitso.com/v3/"
+    static let BitsoDevelopment =
+        Endpoint.Scheme.secure.rawValue +
+        "://" +
+        Endpoint.Enviroment.development.rawValue
 }
 
 extension URL {
