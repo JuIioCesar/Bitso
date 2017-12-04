@@ -18,7 +18,8 @@ extension URL {
 
 extension URLSession {
     func booksTask(completion: @escaping (BooksResponse?) -> Void ) -> URLSessionDataTask {
-        let task = URLSession.shared.dataTask(with: URL.books) { (data, response, error) in
+        let url = URL.books
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else {
                 completion(nil)
                 return
@@ -37,37 +38,43 @@ extension URL {
 }
 
 extension URLSession {
-    func bookInfoTask(with book: (Book), completion: @escaping (TickerResponse?) -> Void) -> URLSessionDataTask {
-        let task = URLSession.shared.dataTask(with: URL.bookInfo(book: book),
+    func bookInfoTask(with book: (Book),
+                      completion: @escaping (TickerResponse?) -> Void) -> URLSessionDataTask {
+        let url = URL.bookInfo(book: book)
+        let task = URLSession.shared.dataTask(with: url,
                                               completionHandler: { (data, response, error) in
-                                                guard let data = data else {
-                                                    completion(nil)
-                                                    return
-                                                }
-                                                let ticker = try? JSONDecoder().decode(TickerResponse.self, from: data)
-                                                completion(ticker)
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            let ticker = try? JSONDecoder().decode(TickerResponse.self, from: data)
+            completion(ticker)
         })
         return task
     }
 }
 
 extension URL {
-    static func orderBook(book: Book, aggregate: Bool = false) -> URL {
+    static func orderBook(book: Book,
+                          aggregate: Bool = false) -> URL {
         let aggregateString = aggregate ? "true": "false"
         return URL(string: URL.BitsoDevelopment + "order_book/?book=\(book.book)&aggregate=\(aggregateString)")!
     }
 }
 
 extension URLSession {
-    func orderBookTask(with book: (Book), aggregate: Bool, completion: @escaping (OrderBookResponse?) -> Void ) -> URLSessionDataTask {
-        let task = URLSession.shared.dataTask(with: URL.orderBook(book: book, aggregate: aggregate),
+    func orderBookTask(with book: (Book),
+                       aggregate: Bool,
+                       completion: @escaping (OrderBookResponse?) -> Void ) -> URLSessionDataTask {
+        let url =  URL.orderBook(book: book, aggregate: aggregate)
+        let task = URLSession.shared.dataTask(with:url,
                                               completionHandler: { (data, response, error) in
-                                                guard let data = data else {
-                                                    completion(nil)
-                                                    return
-                                                }
-                                                let ticker = try? JSONDecoder().decode(OrderBookResponse.self, from: data)
-                                                completion(ticker)
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            let ticker = try? JSONDecoder().decode(OrderBookResponse.self, from: data)
+            completion(ticker)
         })
         return task
     }
@@ -79,11 +86,12 @@ extension URL {
         case descending = "desc"
     }
     
-    static func trades(book: Book, marker: String?, sort: Sort, limit: Int) -> URL {
+    static func trades(book: Book,
+                       marker: String?,
+                       sort: Sort,
+                       limit: Int) -> URL {
         var string = URL.BitsoDevelopment + "trades?book=\(book.book)"
-        if let marker = marker {
-            string = string + "&marker=\(marker)"
-        }
+        if let marker = marker { string = string + "&marker=\(marker)" }
         string = string + "&sort=\(sort.rawValue)"
         string = string + "&limit=\(limit)"
         return URL(string: string)!
@@ -91,18 +99,23 @@ extension URL {
 }
 
 extension URLSession {
-    func tradesTask(with book: (Book), marker: String? = nil, sort: URL.Sort = URL.Sort.ascending, limit: Int = 100, completion: @escaping (TradesResponse?) -> Void ) -> URLSessionDataTask {
-        let task = dataTask(with: URL.trades(book: book,
-                                             marker: marker,
-                                             sort: URL.Sort.descending,
-                                             limit: limit),
+    func tradesTask(with book: (Book),
+                    marker: String? = nil,
+                    sort: URL.Sort = URL.Sort.ascending,
+                    limit: Int = 100,
+                    completion: @escaping (TradesResponse?) -> Void ) -> URLSessionDataTask {
+        let url = URL.trades(book: book,
+                             marker: marker,
+                             sort: URL.Sort.descending,
+                             limit: limit)
+        let task = dataTask(with: url,
                             completionHandler: { (data, response, error) in
-                                guard let data = data else {
-                                    completion(nil)
-                                    return
-                                }
-                                let result = try? JSONDecoder().decode(TradesResponse.self, from: data)
-                                completion(result)
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            let result = try? JSONDecoder().decode(TradesResponse.self, from: data)
+            completion(result)
         })
         return task
     }
