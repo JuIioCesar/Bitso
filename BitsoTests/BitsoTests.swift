@@ -17,7 +17,7 @@ class BitsoTests: XCTestCase {
     func testIntegration() {
         let integrationTest = expectation(description: "fulfill integration test")
         let booksTask = URLSession.shared.booksTask { (books) in
-            let tradesTask = URLSession.shared.tradesTask(with: books!.payload.first!, completion: { (trades) in
+            let tradesTask = URLSession.shared.tradesTask(with: books!.payload.first!, ascending: true, completion: { (trades) in
                 trades?.payload.forEach({ (trade) in
                     print("""
                         Book: \(trade.book)
