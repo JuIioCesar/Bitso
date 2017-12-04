@@ -13,15 +13,15 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct Ticker : Codable {
-	let book : String?
-	let volume : String?
-	let high : String?
-	let last : String?
-	let low : String?
-	let vwap : String?
-	let ask : String?
-	let bid : String?
-	let created_at : String?
+	let book : String
+	let volume : String
+	let high : String
+	let last : String
+	let low : String
+	let vwap : String
+	let ask : String
+	let bid : String
+	let created_at : String
 
 	enum CodingKeys: String, CodingKey {
 
@@ -38,15 +38,15 @@ struct Ticker : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		book = try values.decodeIfPresent(String.self, forKey: .book)
-		volume = try values.decodeIfPresent(String.self, forKey: .volume)
-		high = try values.decodeIfPresent(String.self, forKey: .high)
-		last = try values.decodeIfPresent(String.self, forKey: .last)
-		low = try values.decodeIfPresent(String.self, forKey: .low)
-		vwap = try values.decodeIfPresent(String.self, forKey: .vwap)
-		ask = try values.decodeIfPresent(String.self, forKey: .ask)
-		bid = try values.decodeIfPresent(String.self, forKey: .bid)
-		created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
+		book = try values.decode(String.self, forKey: .book)
+		volume = try values.decode(String.self, forKey: .volume)
+		high = try values.decode(String.self, forKey: .high)
+		last = try values.decode(String.self, forKey: .last)
+		low = try values.decode(String.self, forKey: .low)
+		vwap = try values.decode(String.self, forKey: .vwap)
+		ask = try values.decode(String.self, forKey: .ask)
+		bid = try values.decode(String.self, forKey: .bid)
+		created_at = try values.decode(String.self, forKey: .created_at)
 	}
 
 }

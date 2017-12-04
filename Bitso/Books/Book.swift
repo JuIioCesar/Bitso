@@ -13,13 +13,13 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct Book : Codable {
-	let book : String?
-	let minimum_amount : String?
-	let maximum_amount : String?
-	let minimum_price : String?
-	let maximum_price : String?
-	let minimum_value : String?
-	let maximum_value : String?
+	let book : String
+	let minimum_amount : String
+	let maximum_amount : String
+	let minimum_price : String
+	let maximum_price : String
+	let minimum_value : String
+	let maximum_value : String
 
 	enum CodingKeys: String, CodingKey {
 
@@ -34,13 +34,13 @@ struct Book : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		book = try values.decodeIfPresent(String.self, forKey: .book)
-		minimum_amount = try values.decodeIfPresent(String.self, forKey: .minimum_amount)
-		maximum_amount = try values.decodeIfPresent(String.self, forKey: .maximum_amount)
-		minimum_price = try values.decodeIfPresent(String.self, forKey: .minimum_price)
-		maximum_price = try values.decodeIfPresent(String.self, forKey: .maximum_price)
-		minimum_value = try values.decodeIfPresent(String.self, forKey: .minimum_value)
-		maximum_value = try values.decodeIfPresent(String.self, forKey: .maximum_value)
+		book = try values.decode(String.self, forKey: .book)
+		minimum_amount = try values.decode(String.self, forKey: .minimum_amount)
+		maximum_amount = try values.decode(String.self, forKey: .maximum_amount)
+		minimum_price = try values.decode(String.self, forKey: .minimum_price)
+		maximum_price = try values.decode(String.self, forKey: .maximum_price)
+		minimum_value = try values.decode(String.self, forKey: .minimum_value)
+		maximum_value = try values.decode(String.self, forKey: .maximum_value)
 	}
 
 }

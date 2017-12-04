@@ -17,14 +17,14 @@ class BitsoTests: XCTestCase {
     func testIntegration() {
         let integrationTest = expectation(description: "fulfill integration test")
         let task1 = URLSession.shared.booksTask { (books) in
-            let task2 = URLSession.shared.tradesTask(with: books!.payload!.first!, completion: { (trades) in
-                trades?.payload?.forEach({ (trade) in
+            let task2 = URLSession.shared.tradesTask(with: books!.payload.first!, completion: { (trades) in
+                trades?.payload.forEach({ (trade) in
                     print("""
-                        Book: \(trade.book!)
-                        Trade: \(trade.tid!)
-                        Amount: \(trade.amount!)
-                        Price: \(trade.price!)
-                        Created at: \(trade.created_at!)
+                        Book: \(trade.book)
+                        Trade: \(trade.tid)
+                        Amount: \(trade.amount)
+                        Price: \(trade.price)
+                        Created at: \(trade.created_at)
                         """)
                 })
                 integrationTest.fulfill()

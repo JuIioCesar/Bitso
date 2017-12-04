@@ -13,12 +13,12 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct Trade : Codable {
-	let book : String?
-	let created_at : String?
-	let amount : String?
-	let maker_side : String?
-	let price : String?
-	let tid : Int?
+	let book : String
+	let created_at : String
+	let amount : String
+	let maker_side : String
+	let price : String
+	let tid : Int
 
 	enum CodingKeys: String, CodingKey {
 
@@ -32,12 +32,12 @@ struct Trade : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		book = try values.decodeIfPresent(String.self, forKey: .book)
-		created_at = try values.decodeIfPresent(String.self, forKey: .created_at)
-		amount = try values.decodeIfPresent(String.self, forKey: .amount)
-		maker_side = try values.decodeIfPresent(String.self, forKey: .maker_side)
-		price = try values.decodeIfPresent(String.self, forKey: .price)
-		tid = try values.decodeIfPresent(Int.self, forKey: .tid)
+		book = try values.decode(String.self, forKey: .book)
+		created_at = try values.decode(String.self, forKey: .created_at)
+		amount = try values.decode(String.self, forKey: .amount)
+		maker_side = try values.decode(String.self, forKey: .maker_side)
+		price = try values.decode(String.self, forKey: .price)
+		tid = try values.decode(Int.self, forKey: .tid)
 	}
 
 }

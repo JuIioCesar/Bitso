@@ -13,8 +13,8 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct BooksResponse : Codable {
-	let success : Bool?
-	let payload : [Book]?
+	let success : Bool
+	let payload : [Book]
 
 	enum CodingKeys: String, CodingKey {
 
@@ -24,8 +24,8 @@ struct BooksResponse : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		success = try values.decodeIfPresent(Bool.self, forKey: .success)
-		payload = try values.decodeIfPresent([Book].self, forKey: .payload)
+		success = try values.decode(Bool.self, forKey: .success)
+		payload = try values.decode([Book].self, forKey: .payload)
 	}
 
 }

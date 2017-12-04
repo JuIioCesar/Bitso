@@ -32,7 +32,7 @@ extension URLSession {
 
 extension URL {
     static func bookInfo(book: Book) -> URL {
-        return URL(string: URL.BitsoDevelopment + "ticker/?book=\(book.book!)")!
+        return URL(string: URL.BitsoDevelopment + "ticker/?book=\(book.book)")!
     }
 }
 
@@ -54,7 +54,7 @@ extension URLSession {
 extension URL {
     static func orderBook(book: Book, aggregate: Bool = false) -> URL {
         let aggregateString = aggregate ? "true": "false"
-        return URL(string: URL.BitsoDevelopment + "order_book/?book=\(book.book!)&aggregate=\(aggregateString)")!
+        return URL(string: URL.BitsoDevelopment + "order_book/?book=\(book.book)&aggregate=\(aggregateString)")!
     }
 }
 
@@ -80,7 +80,7 @@ extension URL {
     }
     
     static func trades(book: Book, marker: String?, sort: Sort, limit: Int) -> URL {
-        var string = URL.BitsoDevelopment + "trades?book=\(book.book!)"
+        var string = URL.BitsoDevelopment + "trades?book=\(book.book)"
         if let marker = marker {
             string = string + "&marker=\(marker)"
         }

@@ -13,10 +13,10 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct Ask : Codable {
-	let book : String?
-	let price : String?
-	let amount : String?
-    let oid: String?
+	let book : String
+	let price : String
+	let amount : String
+    let oid: String
 	enum CodingKeys: String, CodingKey {
 
 		case book = "book"
@@ -27,10 +27,10 @@ struct Ask : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		book = try values.decodeIfPresent(String.self, forKey: .book)
-		price = try values.decodeIfPresent(String.self, forKey: .price)
-		amount = try values.decodeIfPresent(String.self, forKey: .amount)
-        oid = try values.decodeIfPresent(String.self, forKey: .oid)
+		book = try values.decode(String.self, forKey: .book)
+		price = try values.decode(String.self, forKey: .price)
+		amount = try values.decode(String.self, forKey: .amount)
+        oid = try values.decode(String.self, forKey: .oid)
 	}
 
 }
