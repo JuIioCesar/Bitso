@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 enum Endpoint {
     
     enum Scheme: String {
@@ -70,7 +71,14 @@ enum Endpoint {
 }
 
 extension URL {
-    static let books = URL(string: "https://" + Endpoint.Enviroment.development.rawValue + Endpoint.Public.availableBooks.rawValue)!
+    static func books() -> URL {
+        var components = URLComponents()
+        components.scheme = Endpoint.Scheme.secure.rawValue;
+        components.host = Endpoint.Enviroment.development.rawValue;
+        components.path = Endpoint.Public.availableBooks.rawValue;
+        components.queryItems = []
+        return components.url!
+    }
 }
 
 extension URL {
@@ -111,18 +119,15 @@ extension URL {
         components.host = Endpoint.Enviroment.development.rawValue;
         components.path =  Endpoint.Public.trades.rawValue;
         var items = [URLQueryItem]()
-        let bookComponent = URLQueryItem(name: Endpoint.Components.book.rawValue,
-                                         value: book.book)
+        let bookComponent = URLQueryItem(name: Endpoint.Components.book.rawValue, value: book.book)
         items.append(bookComponent)
         if let marker = marker {
             let markerComponent = URLQueryItem(name: Endpoint.Components.marker.rawValue,
                                                value: marker)
             items.append(markerComponent)
         }
-        let sortComponent = URLQueryItem(name: Endpoint.Components.sort.rawValue,
-                                         value: Endpoint.Components.Sort(ascending: ascending).rawValue)
-        let limitComponent = URLQueryItem(name: Endpoint.Components.limit.rawValue,
-                                           value: "\(limit)")
+        let sortComponent = URLQueryItem(name: Endpoint.Components.sort.rawValue, value: Endpoint.Components.Sort(ascending: ascending).rawValue)
+        let limitComponent = URLQueryItem(name: Endpoint.Components.limit.rawValue, value: "\(limit)")
         items.append(contentsOf: [sortComponent, limitComponent])
         components.queryItems = items
         return components.url!
@@ -130,7 +135,7 @@ extension URL {
 }
 
 extension URLSession {
-    func decode<T: Decodable>(_ type: T.Type,
+    func decodeTask<T: Decodable>(_ type: T.Type,
                               from url: URL,
                               completion: @escaping (T?) -> () ) -> URLSessionTask {
         let task = dataTask(with: url) { (data, response, error) in
@@ -147,8 +152,8 @@ extension URLSession {
 
 extension URLSession {
     func booksTask(completion: @escaping (BooksResponse?) -> Void ) -> URLSessionTask {
-        return decode(BooksResponse.self,
-                      from: URL.books,
+        return decodeTask(BooksResponse.self,
+                      from: URL.books(),
                       completion: completion)
     }
 }
@@ -157,7 +162,7 @@ extension URLSession {
     func bookInfoTask(with book: (Book),
                       completion: @escaping (TickerResponse?) -> Void) -> URLSessionTask {
         let url = URL.info(from: book)
-        return decode(TickerResponse.self,
+        return decodeTask(TickerResponse.self,
                       from: url,
                       completion: completion)
     }
@@ -169,7 +174,7 @@ extension URLSession {
                        aggregate: Bool,
                        completion: @escaping (OrderBookResponse?) -> Void ) -> URLSessionTask {
         let url =  URL.orderBook(book: book, aggregate: aggregate)
-        return decode(OrderBookResponse.self,
+        return decodeTask(OrderBookResponse.self,
                       from: url,
                       completion: completion)
     }
@@ -185,7 +190,7 @@ extension URLSession {
                              marker: marker,
                              ascending: ascending,
                              limit: limit)
-        return decode(TradesResponse.self,
+        return decodeTask(TradesResponse.self,
                       from: url,
                       completion: completion)
     }
