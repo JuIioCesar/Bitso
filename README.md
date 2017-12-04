@@ -37,11 +37,12 @@ The workflow for adding endpoints it's mostly automated and it's the next one:
 6. Remove optionals from the generated files using the next two points
 7. You can use Find and Replace to remove the `?` from those files before adding them to the project.
 8. You can use Find and Replace to replace the `decodeIfPresent` for a `decode` in the generated files before adding them to the project.
-9. Add the generated files to the project.
-10. Test the models using a unit test.
-11. Rename structs to verbose names like `Book` instead of `Payload` and `BooksResponse` instead of `Json4Swift_Base`
-12. Add your name to the contributors list
-12. Raise a Pull Request
+9. Correct automated code in subcontainers by replacing code like `payload = Payload(decoder)` for `decode(Payload.self, key: "payload")`
+10. Add the generated files to the project.
+11. Test the models using a unit test.
+12. Rename structs to verbose names like `Book` instead of `Payload` and `BooksResponse` instead of `Json4Swift_Base`
+13. Add your name to the contributors list
+14. Raise a Pull Request
 
 **Refactoring**
 
