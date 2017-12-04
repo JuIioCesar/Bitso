@@ -8,6 +8,67 @@
 
 import Foundation
 
+enum Endpoint {
+    
+    enum Scheme: String {
+        case secure = "https"
+    }
+    
+    enum Enviroment: String {
+        case development = "api.bitso.com/v3/"
+    }
+    
+    enum Public: String {
+        case availableBooks = "available_books/"
+        case ticker = "ticker/"
+        case orderBook = "order_book/"
+        case trades = "trades/"
+    }
+    
+    enum Private: String {
+        case accountStatus = "account_status/"
+        case phoneNumber = "phone_number/"
+        case phoneNumberVerification = "phone_verification/"
+        case balance = "balance/"
+        case fees = "fees/"
+        case userTrades = "user_trades/"
+        case openOrders = "open_orders"
+        case placeOrder = "orders/"
+        case fundingDestination = "funding_destination/"
+        case bitcoinWithdrawal = "bitcoin_withdrawal/"
+        case etherWithdrawal = "ether_withdrawal/"
+        case speiWithdrawal = "spei_withdrawal/"
+        case bankCodes = "mx_bank_codes/"
+    }
+    
+    enum Components: String {
+        case book = "book"
+        case aggregate = "aggregate"
+        enum Aggregate: String {
+            case `true` = "true"
+            case `false` = "false"
+            
+            init(value: Bool) {
+                self = value ? Aggregate.true : Aggregate.false
+            }
+        }
+        
+        case marker = "marker"
+        case sort = "sort"
+        enum Sort: String {
+            case ascending = "asc"
+            case descending = "desc"
+            
+            init(ascending: Bool) {
+                self = ascending ? Sort.ascending : Sort.descending
+            }
+        }
+        case limit = "limit"
+    }
+    
+    
+}
+
 extension URLSession {
     func decode<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (T?) -> () ) -> URLSessionTask {
         let task = dataTask(with: url) { (data, _, _) in
