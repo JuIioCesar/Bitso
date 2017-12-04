@@ -8,6 +8,20 @@
 
 import Foundation
 
+extension URLSession {
+    func decode<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (T?) -> () ) -> URLSessionTask {
+        let task = dataTask(with: url) { (data, _, _) in
+            guard let data = data else {
+                completion(nil)
+                return
+            }
+            let result = try? JSONDecoder().decode(type.self, from: data)
+            completion(result)
+        }
+        return task
+    }
+}
+
 private extension URL {
     static let BitsoDevelopment = "https://api.bitso.com/v3/"
 }
@@ -17,17 +31,8 @@ extension URL {
 }
 
 extension URLSession {
-    func booksTask(completion: @escaping (BooksResponse?) -> Void ) -> URLSessionDataTask {
-        let url = URL.books
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else {
-                completion(nil)
-                return
-            }
-            let books = try? JSONDecoder().decode(BooksResponse.self, from: data)
-            completion(books)
-        }
-        return task
+    func booksTask(completion: @escaping (BooksResponse?) -> Void ) -> URLSessionTask {
+        return decode(BooksResponse.self, from: URL.books, completion: completion)
     }
 }
 
@@ -39,18 +44,9 @@ extension URL {
 
 extension URLSession {
     func bookInfoTask(with book: (Book),
-                      completion: @escaping (TickerResponse?) -> Void) -> URLSessionDataTask {
+                      completion: @escaping (TickerResponse?) -> Void) -> URLSessionTask {
         let url = URL.bookInfo(book: book)
-        let task = URLSession.shared.dataTask(with: url,
-                                              completionHandler: { (data, response, error) in
-            guard let data = data else {
-                completion(nil)
-                return
-            }
-            let ticker = try? JSONDecoder().decode(TickerResponse.self, from: data)
-            completion(ticker)
-        })
-        return task
+        return decode(TickerResponse.self, from: url, completion: completion)
     }
 }
 
@@ -65,18 +61,9 @@ extension URL {
 extension URLSession {
     func orderBookTask(with book: (Book),
                        aggregate: Bool,
-                       completion: @escaping (OrderBookResponse?) -> Void ) -> URLSessionDataTask {
+                       completion: @escaping (OrderBookResponse?) -> Void ) -> URLSessionTask {
         let url =  URL.orderBook(book: book, aggregate: aggregate)
-        let task = URLSession.shared.dataTask(with:url,
-                                              completionHandler: { (data, response, error) in
-            guard let data = data else {
-                completion(nil)
-                return
-            }
-            let ticker = try? JSONDecoder().decode(OrderBookResponse.self, from: data)
-            completion(ticker)
-        })
-        return task
+        return decode(OrderBookResponse.self, from: url, completion: completion)
     }
 }
 
@@ -103,20 +90,11 @@ extension URLSession {
                     marker: String? = nil,
                     sort: URL.Sort = URL.Sort.ascending,
                     limit: Int = 100,
-                    completion: @escaping (TradesResponse?) -> Void ) -> URLSessionDataTask {
+                    completion: @escaping (TradesResponse?) -> Void ) -> URLSessionTask {
         let url = URL.trades(book: book,
                              marker: marker,
                              sort: URL.Sort.descending,
                              limit: limit)
-        let task = dataTask(with: url,
-                            completionHandler: { (data, response, error) in
-            guard let data = data else {
-                completion(nil)
-                return
-            }
-            let result = try? JSONDecoder().decode(TradesResponse.self, from: data)
-            completion(result)
-        })
-        return task
+        return decode(TradesResponse.self, from: url, completion: completion)
     }
 }
