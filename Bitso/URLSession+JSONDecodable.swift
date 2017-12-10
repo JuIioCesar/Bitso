@@ -15,7 +15,7 @@ extension URLSession {
         var components = URLComponents.bitso
         components.path = endpoint.path
         components.queryItems = endpoint.queryItems
-        assert(components.url != nil, "Components url couldn't be formed. Please check your URLComponents.")
+        assert(components.url != nil, "URL components couldn't be formed. Please check your URLComponents.")
         let request = URLRequest(url: components.url!)
         let task = dataTask(with: request) { (data, _, _) in
             guard let data = data else {
