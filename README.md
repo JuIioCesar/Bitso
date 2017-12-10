@@ -6,7 +6,7 @@
 The Bitso framework allows you to create URLSessionTasks that return bitso API models such as `Orders`, `Books`, `Ticker`, and `Trades`.
 
 ```
-let booksTask = URLSession.shared.booksTask { (books) in
+let getAvailableBooksTask = URLSession.shared.getAvailableBooksTask { (books) in
     let tradesTask = URLSession.shared.tradesTask(with: books!.payload.first!, completion: { (trades) in
         trades?.payload.forEach({ (trade) in
         print("""
@@ -20,7 +20,7 @@ let booksTask = URLSession.shared.booksTask { (books) in
         })
     tradesTask.resume()
 }
-booksTask.resume()
+getAvailableBooksTask.resume()
 ```
 
 ### How to contribute

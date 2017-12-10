@@ -9,6 +9,10 @@
 import XCTest
 @testable import Bitso
 
+func print(_ error: BitsoError?) {
+    if let error = error { print("🔴 Error: \(error.code): \(error.message)") }
+}
+
 class BitsoTests: XCTestCase {
     
     //TODO: Private API interaction
@@ -16,22 +20,26 @@ class BitsoTests: XCTestCase {
     //TODO: Remove integration test
     func testIntegration() {
         let integrationTest = expectation(description: "fulfill integration test")
-        let booksTask = URLSession.shared.booksTask { (books) in
-            let tradesTask = URLSession.shared.tradesTask(with: books!.payload.first!, completion: { (trades) in
-                trades?.payload.forEach({ (trade) in
-                    print("""
-                        Book: \(trade.book)
-                        Trade: \(trade.tid)
-                        Amount: \(trade.amount)
-                        Price: \(trade.price)
-                        Created at: \(trade.created_at)
-                        """)
-                })
+        let getAvailableBooksTask = URLSession.shared.getAvailableBooksTask { (books, error) in
+            guard let books = books else { return }
+            guard let book = books.payload.first else { return }
+            let orderBookTask = URLSession.shared.orderBookTask(with: book, aggregate: true, completion: { (orderbook, error) in
+                XCTAssert(orderbook != nil || error != nil, "OrderBook or error should be retrieved")
+//                integrationTest.fulfill()
+            })
+            let bookInfoTask = URLSession.shared.bookInfoTask(with: book, completion: { (ticker, error) in
+                XCTAssert(ticker != nil || error != nil, "Ticker or error should be retrieved")
+//                integrationTest.fulfill()
+            })
+            let tradeTask = URLSession.shared.tradesTask(with: book, ascending: true, completion: { (trades, error) in
+                XCTAssert(trades != nil || error != nil, "Ticker or error should be retrieved")
                 integrationTest.fulfill()
             })
-            tradesTask.resume()
+            tradeTask.resume()
+            orderBookTask.resume()
+            bookInfoTask.resume()
         }
-        booksTask.resume()
+        getAvailableBooksTask.resume()
         
         wait(for: [integrationTest], timeout: 30.0)
     }

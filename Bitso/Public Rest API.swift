@@ -9,13 +9,13 @@
 import Foundation
 
 enum Endpoint {
-    
     enum Scheme: String {
         case secure = "https"
     }
     
     enum Enviroment: String {
-        case development = "api.bitso.com/v3/"
+        case development = "api-dev.bitso.com/v3/"
+        case production = "api.bitso.com/v3/"
     }
     
     enum Public: String {
@@ -40,125 +40,77 @@ enum Endpoint {
         case speiWithdrawal = "spei_withdrawal/"
         case bankCodes = "mx_bank_codes/"
     }
-    
-    enum Components: String {
-        case book = "book"
-        case aggregate = "aggregate"
-        enum Aggregate: String {
-            case `true` = "true"
-            case `false` = "false"
-            
-            init(value: Bool) {
-                self = value ? Aggregate.true : Aggregate.false
-            }
-        }
-        
-        case marker = "marker"
-        case sort = "sort"
-        enum Sort: String {
-            case ascending = "asc"
-            case descending = "desc"
-            
-            init(ascending: Bool) {
-                self = ascending ? Sort.ascending : Sort.descending
-            }
-        }
-        case limit = "limit"
-    }
-    
-    
 }
 
 extension URLSession {
-    func decode<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (T?) -> () ) -> URLSessionTask {
-        let task = dataTask(with: url) { (data, _, _) in
+    func decodeJSONTask<T: Decodable>(_ type: T.Type, from request: URLRequest, completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
+        let task = dataTask(with: request) { (data, _, _) in
             guard let data = data else {
-                completion(nil)
+                completion(nil, nil)
                 return
             }
             let result = try? JSONDecoder().decode(type.self, from: data)
-            completion(result)
+            let error = try? JSONDecoder().decode(ErrorResponse.self, from: data)
+            completion(result, error?.error)
         }
         return task
     }
 }
 
 private extension URL {
-    static let BitsoDevelopment =
-        Endpoint.Scheme.secure.rawValue +
-        "://" +
-        Endpoint.Enviroment.development.rawValue
-}
-
-extension URL {
-    static let books = URL(string: URL.BitsoDevelopment + Endpoint.Public.availableBooks.rawValue)!
-}
-
-extension URLSession {
-    func booksTask(completion: @escaping (BooksResponse?) -> Void ) -> URLSessionTask {
-        return decode(BooksResponse.self, from: URL.books, completion: completion)
-    }
-}
-
-extension URL {
-    static func bookInfo(book: Book) -> URL {
-        return URL(string: URL.BitsoDevelopment + "ticker/?book=\(book.book)")!
+    static func bitsoComponents() -> URLComponents {
+        var components = URLComponents()
+        components.scheme = "https"
+        components.host = "api-dev.bitso.com"
+        return components
     }
 }
 
 extension URLSession {
-    func bookInfoTask(with book: (Book),
-                      completion: @escaping (TickerResponse?) -> Void) -> URLSessionTask {
-        let url = URL.bookInfo(book: book)
-        return decode(TickerResponse.self, from: url, completion: completion)
+    func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
+        var components = URL.bitsoComponents()
+        components.path = "/v3/available_books"
+        let request = URLRequest(url: components.url!)
+        return decodeJSONTask(BooksResponse.self, from: request, completion: completion)
     }
-}
 
-extension URL {
-    static func orderBook(book: Book,
-                          aggregate: Bool = false) -> URL {
-        let aggregateString = aggregate ? "true": "false"
-        return URL(string: URL.BitsoDevelopment + "order_book/?book=\(book.book)&aggregate=\(aggregateString)")!
+    func bookInfoTask(with book: Book,
+                      completion: @escaping (TickerResponse?, BitsoError?) -> Void) -> URLSessionTask {
+        var components = URL.bitsoComponents()
+        components.path = "/v3/ticker"
+        let bookQuery = URLQueryItem(name: "book", value: book.book)
+        components.queryItems = [bookQuery]
+        let request = URLRequest(url: components.url!)
+        return decodeJSONTask(TickerResponse.self, from: request, completion: completion)
     }
-}
 
-extension URLSession {
-    func orderBookTask(with book: (Book),
+    func orderBookTask(with book: Book,
                        aggregate: Bool,
-                       completion: @escaping (OrderBookResponse?) -> Void ) -> URLSessionTask {
-        let url =  URL.orderBook(book: book, aggregate: aggregate)
-        return decode(OrderBookResponse.self, from: url, completion: completion)
+                       completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
+        var components = URL.bitsoComponents()
+        components.path = "/v3/order_book"
+        let bookQuery = URLQueryItem(name: "book", value: book.book)
+        let aggregateString = aggregate ? "true": "false"
+        let aggregateQuery = URLQueryItem(name: "aggregate", value: aggregateString)
+        components.queryItems = [bookQuery, aggregateQuery]
+        let request = URLRequest(url: components.url!)
+        return decodeJSONTask(OrderBookResponse.self, from: request, completion: completion)
     }
-}
 
-extension URL {
-    enum Sort: String {
-        case ascending = "asc"
-        case descending = "desc"
-    }
-    
-    static func trades(book: Book,
-                       marker: String?,
-                       sort: Sort,
-                       limit: Int) -> URL {
-        var string = URL.BitsoDevelopment + "trades?book=\(book.book)"
-        if let marker = marker { string = string + "&marker=\(marker)" }
-        string = string + "&sort=\(sort.rawValue)"
-        string = string + "&limit=\(limit)"
-        return URL(string: string)!
-    }
-}
-
-extension URLSession {
-    func tradesTask(with book: (Book),
+    func tradesTask(with book: Book,
                     marker: String? = nil,
-                    sort: URL.Sort = URL.Sort.ascending,
+                    ascending: Bool,
                     limit: Int = 100,
-                    completion: @escaping (TradesResponse?) -> Void ) -> URLSessionTask {
-        let url = URL.trades(book: book,
-                             marker: marker,
-                             sort: URL.Sort.descending,
-                             limit: limit)
-        return decode(TradesResponse.self, from: url, completion: completion)
+                    completion: @escaping (TradesResponse?, BitsoError?) -> Void ) -> URLSessionTask {
+        var components = URL.bitsoComponents()
+        components.path = "/v3/trades"
+        let bookQuery = URLQueryItem(name: "book", value: book.book)
+        let markerQuery = URLQueryItem(name: "marker", value: marker)
+        let sort = ascending ? "asc" : "desc"
+        let sortQuery = URLQueryItem(name: "sort", value: sort)
+        let limitQuery = URLQueryItem(name: "limit", value: "\(limit)")
+        components.queryItems = [bookQuery, markerQuery, sortQuery, limitQuery]
+        let request = URLRequest(url: components.url!)
+        return decodeJSONTask(TradesResponse.self, from: request, completion: completion)
     }
 }

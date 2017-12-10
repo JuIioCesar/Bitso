@@ -16,13 +16,13 @@ struct Ask : Codable {
 	let book : String
 	let price : String
 	let amount : String
-    let oid: String
+//    let oid: String //It's on documentation but doesn't get retrieved from the API
 	enum CodingKeys: String, CodingKey {
 
 		case book = "book"
 		case price = "price"
 		case amount = "amount"
-        case oid = "oid"
+//        case oid = "oid"
 	}
 
 	init(from decoder: Decoder) throws {
@@ -30,7 +30,7 @@ struct Ask : Codable {
 		book = try values.decode(String.self, forKey: .book)
 		price = try values.decode(String.self, forKey: .price)
 		amount = try values.decode(String.self, forKey: .amount)
-        oid = try values.decode(String.self, forKey: .oid)
+//        oid = try values.decode(String.self, forKey: .oid)
 	}
 
 }
