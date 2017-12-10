@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 struct BitsoAPI {
     let session: URLSession
     
