@@ -14,7 +14,7 @@ func print(_ error: BitsoError?) {
 }
 
 class BitsoTests: XCTestCase {
-    //TODO: Remove integration test
+    //TODO: ⚠️ Remove integration test
     func testPublicAPIs() {
         
         let bitso = BitsoAPI(session: URLSession.shared)
