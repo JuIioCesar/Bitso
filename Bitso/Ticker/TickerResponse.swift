@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct TickerResponse : Codable {
+public struct TickerResponse : Codable {
 	let success : Bool
 	let payload : Ticker
 
@@ -22,7 +22,7 @@ struct TickerResponse : Codable {
 		case payload
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		success = try values.decode(Bool.self, forKey: .success)
 		payload = try values.decode(Ticker.self, forKey: .payload)

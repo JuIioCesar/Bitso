@@ -11,25 +11,25 @@ import Foundation
 struct BitsoAPI {
     let session: URLSession
     
-    func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
+    public func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = AvailableBooksEndpoint()
         return session.decodeJSONTask(BooksResponse.self, from: endpoint, completion: completion)
     }
     
-    func bookInfoTask(with book: Book,
+    public func bookInfoTask(with book: Book,
                       completion: @escaping (TickerResponse?, BitsoError?) -> Void) -> URLSessionTask {
         let endpoint = TickerEndpoint(book: book)
         return session.decodeJSONTask(TickerResponse.self, from: endpoint, completion: completion)
     }
     
-    func orderBookTask(with book: Book,
+    public func orderBookTask(with book: Book,
                        aggregate: Bool,
                        completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = OrderBookEndpoint(book: book, aggregate: aggregate)
         return session.decodeJSONTask(OrderBookResponse.self, from: endpoint, completion: completion)
     }
     
-    func tradesTask(with book: Book,
+    public func tradesTask(with book: Book,
                     marker: String? = nil,
                     ascending: Bool,
                     limit: Int,

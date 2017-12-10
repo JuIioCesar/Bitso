@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct ErrorResponse : Codable {
+public struct ErrorResponse : Codable {
 	let success : Bool
 	let error : BitsoError
 
@@ -22,7 +22,7 @@ struct ErrorResponse : Codable {
 		case error
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		success = try values.decode(Bool.self, forKey: .success)
 		error = try values.decode(BitsoError.self, forKey: .error)

@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Book : Codable {
+public struct Book : Codable {
 	let book : String
 	let minimum_amount : String
 	let maximum_amount : String
@@ -32,7 +32,7 @@ struct Book : Codable {
 		case maximum_value = "maximum_value"
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		book = try values.decode(String.self, forKey: .book)
 		minimum_amount = try values.decode(String.self, forKey: .minimum_amount)

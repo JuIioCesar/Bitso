@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Ticker : Codable {
+public struct Ticker : Codable {
 	let book : String
 	let volume : String
 	let high : String
@@ -36,7 +36,7 @@ struct Ticker : Codable {
 		case created_at = "created_at"
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		book = try values.decode(String.self, forKey: .book)
 		volume = try values.decode(String.self, forKey: .volume)

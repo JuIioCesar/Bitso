@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Ask : Codable {
+public struct Ask : Codable {
 	let book : String
 	let price : String
 	let amount : String
@@ -25,7 +25,7 @@ struct Ask : Codable {
 //        case oid = "oid"
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		book = try values.decode(String.self, forKey: .book)
 		price = try values.decode(String.self, forKey: .price)

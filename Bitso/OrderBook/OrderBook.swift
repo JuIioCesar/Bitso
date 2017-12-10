@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct OrderBook : Codable {
+public struct OrderBook : Codable {
 	let asks : [Ask]
 	let bids : [Bid]
 	let updated_at : String
@@ -26,7 +26,7 @@ struct OrderBook : Codable {
 		case sequence = "sequence"
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		asks = try values.decode([Ask].self, forKey: .asks)
 		bids = try values.decode([Bid].self, forKey: .bids)

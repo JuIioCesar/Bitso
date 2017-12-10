@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct Trade : Codable {
+public struct Trade : Codable {
 	let book : String
 	let created_at : String
 	let amount : String
@@ -30,7 +30,7 @@ struct Trade : Codable {
         case tid = "tid"
 	}
 
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		book = try values.decode(String.self, forKey: .book)
 		created_at = try values.decode(String.self, forKey: .created_at)
