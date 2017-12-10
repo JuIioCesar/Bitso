@@ -8,16 +8,8 @@
 
 import Foundation
 
-enum Endpoint {
-    enum Scheme: String {
-        case secure = "https"
-    }
-    
-    enum Enviroment: String {
-        case development = "api-dev.bitso.com/v3/"
-        case production = "api.bitso.com/v3/"
-    }
-    
+enum Strings {
+
     enum Public: String {
         case availableBooks = "available_books/"
         case ticker = "ticker/"
@@ -42,6 +34,25 @@ enum Endpoint {
     }
 }
 
+private extension URL {
+    
+    enum Scheme: String {
+        case secure = "https"
+    }
+    
+    enum Enviroment: String {
+        case development = "api-dev.bitso.com"
+        case production = "api.bitso.com"
+    }
+    
+    static func bitsoComponents() -> URLComponents {
+        var components = URLComponents()
+        components.scheme = URL.Scheme.secure.rawValue
+        components.host = URL.Enviroment.development.rawValue
+        return components
+    }
+}
+
 extension URLSession {
     func decodeJSONTask<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
         let request = URLRequest(url: url)
@@ -58,28 +69,82 @@ extension URLSession {
     }
 }
 
-private extension URL {
-    static func bitsoComponents() -> URLComponents {
-        var components = URLComponents()
-        components.scheme = "https"
-        components.host = "api-dev.bitso.com"
-        return components
+protocol Endpoint {
+    var path: String { get }
+    var queryItems: [URLQueryItem] { get }
+}
+
+struct AvailableBooksEndpoint: Endpoint {
+    let path = "/v3/available_books"
+    let queryItems: [URLQueryItem] = []
+}
+
+struct TickerEndpoint: Endpoint {
+    let path = "/v3/ticker"
+    var queryItems: [URLQueryItem] {
+        let bookQuery = URLQueryItem(name: "book", value: book.book)
+        return [bookQuery]
+    }
+    private let book: Book
+    init(book: Book) {
+        self.book = book
     }
 }
+
+struct OrderBookEndpoint: Endpoint {
+    let path = "/v3/order_book"
+    var queryItems: [URLQueryItem] {
+        let bookQuery = URLQueryItem(name: "book", value: book.book)
+        let aggregateString = aggregate ? "true": "false"
+        let aggregateQuery = URLQueryItem(name: "aggregate", value: aggregateString)
+        return [bookQuery, aggregateQuery]
+    }
+    private let book: Book
+    private let aggregate: Bool
+    init(book: Book, aggregate: Bool) {
+        self.book = book
+        self.aggregate = aggregate
+    }
+}
+
+struct TradesEndpoint: Endpoint {
+    let path = "/v3/trades"
+    var queryItems: [URLQueryItem] {
+        let bookQuery = URLQueryItem(name: "book", value: book.book)
+        let markerQuery = URLQueryItem(name: "marker", value: marker)
+        let sort = ascending ? "asc" : "desc"
+        let sortQuery = URLQueryItem(name: "sort", value: sort)
+        let limitQuery = URLQueryItem(name: "limit", value: "\(limit)")
+        return [bookQuery, markerQuery, sortQuery, limitQuery]
+    }
+    private let book: Book
+    private let marker: String?
+    private let ascending: Bool
+    private let limit: Int
+    init(book: Book, marker: String? = nil, ascending: Bool, limit: Int = 100) {
+        self.book = book
+        self.marker = marker
+        self.ascending = ascending
+        self.limit = limit
+    }
+}
+
 
 extension URLSession {
     func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         var components = URL.bitsoComponents()
-        components.path = "/v3/available_books"
+        let endpoint = AvailableBooksEndpoint()
+        components.path = endpoint.path
+        components.queryItems = endpoint.queryItems
         return decodeJSONTask(BooksResponse.self, from: components.url!, completion: completion)
     }
 
     func bookInfoTask(with book: Book,
                       completion: @escaping (TickerResponse?, BitsoError?) -> Void) -> URLSessionTask {
         var components = URL.bitsoComponents()
-        components.path = "/v3/ticker"
-        let bookQuery = URLQueryItem(name: "book", value: book.book)
-        components.queryItems = [bookQuery]
+        let endpoint = TickerEndpoint(book: book)
+        components.path = endpoint.path
+        components.queryItems = endpoint.queryItems
         return decodeJSONTask(TickerResponse.self, from: components.url!, completion: completion)
     }
 
@@ -87,12 +152,9 @@ extension URLSession {
                        aggregate: Bool,
                        completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         var components = URL.bitsoComponents()
-        components.path = "/v3/order_book"
-        
-        let bookQuery = URLQueryItem(name: "book", value: book.book)
-        let aggregateString = aggregate ? "true": "false"
-        let aggregateQuery = URLQueryItem(name: "aggregate", value: aggregateString)
-        components.queryItems = [bookQuery, aggregateQuery]
+        let endpoint = OrderBookEndpoint(book: book, aggregate: aggregate)
+        components.path = endpoint.path
+        components.queryItems = endpoint.queryItems
         return decodeJSONTask(OrderBookResponse.self, from: components.url!, completion: completion)
     }
 
@@ -102,13 +164,9 @@ extension URLSession {
                     limit: Int = 100,
                     completion: @escaping (TradesResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         var components = URL.bitsoComponents()
-        components.path = "/v3/trades"
-        let bookQuery = URLQueryItem(name: "book", value: book.book)
-        let markerQuery = URLQueryItem(name: "marker", value: marker)
-        let sort = ascending ? "asc" : "desc"
-        let sortQuery = URLQueryItem(name: "sort", value: sort)
-        let limitQuery = URLQueryItem(name: "limit", value: "\(limit)")
-        components.queryItems = [bookQuery, markerQuery, sortQuery, limitQuery]
+        let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
+        components.path = endpoint.path
+        components.queryItems = endpoint.queryItems
         return decodeJSONTask(TradesResponse.self, from: components.url!, completion: completion)
     }
 }
