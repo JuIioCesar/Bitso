@@ -162,8 +162,8 @@
 		42ED24CD1FDD8E4B0097B63E /* Error */ = {
 			isa = PBXGroup;
 			children = (
-				42ED24C91FDD8E440097B63E /* ErrorResponse.swift */,
 				42ED24CA1FDD8E440097B63E /* BitsoError.swift */,
+				42ED24C91FDD8E440097B63E /* ErrorResponse.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";

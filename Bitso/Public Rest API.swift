@@ -43,7 +43,8 @@ enum Endpoint {
 }
 
 extension URLSession {
-    func decodeJSONTask<T: Decodable>(_ type: T.Type, from request: URLRequest, completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
+    func decodeJSONTask<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
+        let request = URLRequest(url: url)
         let task = dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 completion(nil, nil)
@@ -70,8 +71,7 @@ extension URLSession {
     func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         var components = URL.bitsoComponents()
         components.path = "/v3/available_books"
-        let request = URLRequest(url: components.url!)
-        return decodeJSONTask(BooksResponse.self, from: request, completion: completion)
+        return decodeJSONTask(BooksResponse.self, from: components.url!, completion: completion)
     }
 
     func bookInfoTask(with book: Book,
@@ -80,8 +80,7 @@ extension URLSession {
         components.path = "/v3/ticker"
         let bookQuery = URLQueryItem(name: "book", value: book.book)
         components.queryItems = [bookQuery]
-        let request = URLRequest(url: components.url!)
-        return decodeJSONTask(TickerResponse.self, from: request, completion: completion)
+        return decodeJSONTask(TickerResponse.self, from: components.url!, completion: completion)
     }
 
     func orderBookTask(with book: Book,
@@ -89,12 +88,12 @@ extension URLSession {
                        completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         var components = URL.bitsoComponents()
         components.path = "/v3/order_book"
+        
         let bookQuery = URLQueryItem(name: "book", value: book.book)
         let aggregateString = aggregate ? "true": "false"
         let aggregateQuery = URLQueryItem(name: "aggregate", value: aggregateString)
         components.queryItems = [bookQuery, aggregateQuery]
-        let request = URLRequest(url: components.url!)
-        return decodeJSONTask(OrderBookResponse.self, from: request, completion: completion)
+        return decodeJSONTask(OrderBookResponse.self, from: components.url!, completion: completion)
     }
 
     func tradesTask(with book: Book,
@@ -110,7 +109,6 @@ extension URLSession {
         let sortQuery = URLQueryItem(name: "sort", value: sort)
         let limitQuery = URLQueryItem(name: "limit", value: "\(limit)")
         components.queryItems = [bookQuery, markerQuery, sortQuery, limitQuery]
-        let request = URLRequest(url: components.url!)
-        return decodeJSONTask(TradesResponse.self, from: request, completion: completion)
+        return decodeJSONTask(TradesResponse.self, from: components.url!, completion: completion)
     }
 }
