@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		427ECBCF1FDDDC8800449A1F /* Enpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBCE1FDDDC8800449A1F /* Enpoint.swift */; };
+		427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */; };
+		427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */; };
+		427ECBD51FDDDCBB00449A1F /* OrderBookEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD41FDDDCBB00449A1F /* OrderBookEndpoint.swift */; };
+		427ECBD71FDDDCCA00449A1F /* TradesEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD61FDDDCCA00449A1F /* TradesEndpoint.swift */; };
+		427ECBD91FDDDCEA00449A1F /* BitsoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD81FDDDCEA00449A1F /* BitsoAPI.swift */; };
+		427ECBDB1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBDA1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift */; };
+		427ECBDD1FDDDD2B00449A1F /* URLComponents+Bitso.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBDC1FDDDD2B00449A1F /* URLComponents+Bitso.swift */; };
 		42C168261FD4D095007D96AD /* Bitso.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42C1681C1FD4D095007D96AD /* Bitso.framework */; };
 		42C1682B1FD4D095007D96AD /* BitsoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1682A1FD4D095007D96AD /* BitsoTests.swift */; };
 		42C1682D1FD4D095007D96AD /* Bitso.h in Headers */ = {isa = PBXBuildFile; fileRef = 42C1681F1FD4D095007D96AD /* Bitso.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -18,7 +26,6 @@
 		42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */; };
 		42C1684C1FD4D0B6007D96AD /* Trade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C1683F1FD4D0B6007D96AD /* Trade.swift */; };
 		42C1684D1FD4D0B6007D96AD /* TradesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168401FD4D0B6007D96AD /* TradesResponse.swift */; };
-		42C1684F1FD4D0B6007D96AD /* Public Rest API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168421FD4D0B6007D96AD /* Public Rest API.swift */; };
 		42C168501FD4D0B6007D96AD /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168441FD4D0B6007D96AD /* Book.swift */; };
 		42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168451FD4D0B6007D96AD /* BooksResponse.swift */; };
 		42C168531FD4D2E8007D96AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42C168521FD4D2E8007D96AD /* README.md */; };
@@ -37,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		427ECBCE1FDDDC8800449A1F /* Enpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enpoint.swift; sourceTree = "<group>"; };
+		427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBooksEndpoint.swift; sourceTree = "<group>"; };
+		427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerEndpoint.swift; sourceTree = "<group>"; };
+		427ECBD41FDDDCBB00449A1F /* OrderBookEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookEndpoint.swift; sourceTree = "<group>"; };
+		427ECBD61FDDDCCA00449A1F /* TradesEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradesEndpoint.swift; sourceTree = "<group>"; };
+		427ECBD81FDDDCEA00449A1F /* BitsoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitsoAPI.swift; sourceTree = "<group>"; };
+		427ECBDA1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+JSONDecodable.swift"; sourceTree = "<group>"; };
+		427ECBDC1FDDDD2B00449A1F /* URLComponents+Bitso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLComponents+Bitso.swift"; sourceTree = "<group>"; };
 		42C1681C1FD4D095007D96AD /* Bitso.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Bitso.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		42C1681F1FD4D095007D96AD /* Bitso.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bitso.h; sourceTree = "<group>"; };
 		42C168201FD4D095007D96AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +66,6 @@
 		42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerResponse.swift; sourceTree = "<group>"; };
 		42C1683F1FD4D0B6007D96AD /* Trade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trade.swift; sourceTree = "<group>"; };
 		42C168401FD4D0B6007D96AD /* TradesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesResponse.swift; sourceTree = "<group>"; };
-		42C168421FD4D0B6007D96AD /* Public Rest API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Public Rest API.swift"; sourceTree = "<group>"; };
 		42C168441FD4D0B6007D96AD /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		42C168451FD4D0B6007D96AD /* BooksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksResponse.swift; sourceTree = "<group>"; };
 		42C168521FD4D2E8007D96AD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -78,6 +92,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		427ECBDE1FDDDD6900449A1F /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				427ECBCE1FDDDC8800449A1F /* Enpoint.swift */,
+				427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */,
+				427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */,
+				427ECBD41FDDDCBB00449A1F /* OrderBookEndpoint.swift */,
+				427ECBD61FDDDCCA00449A1F /* TradesEndpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
 		42C168121FD4D095007D96AD = {
 			isa = PBXGroup;
 			children = (
@@ -101,12 +127,15 @@
 			isa = PBXGroup;
 			children = (
 				42C1681F1FD4D095007D96AD /* Bitso.h */,
-				42C168421FD4D0B6007D96AD /* Public Rest API.swift */,
 				42ED24CD1FDD8E4B0097B63E /* Error */,
 				42C168431FD4D0B6007D96AD /* Books */,
 				42C168361FD4D0B6007D96AD /* OrderBook */,
 				42C1683B1FD4D0B6007D96AD /* Ticker */,
 				42C1683E1FD4D0B6007D96AD /* Trades */,
+				427ECBDE1FDDDD6900449A1F /* Endpoints */,
+				427ECBDA1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift */,
+				427ECBDC1FDDDD2B00449A1F /* URLComponents+Bitso.swift */,
+				427ECBD81FDDDCEA00449A1F /* BitsoAPI.swift */,
 				42C168201FD4D095007D96AD /* Info.plist */,
 			);
 			path = Bitso;
@@ -282,13 +311,20 @@
 			files = (
 				42C1684C1FD4D0B6007D96AD /* Trade.swift in Sources */,
 				42C1684D1FD4D0B6007D96AD /* TradesResponse.swift in Sources */,
+				427ECBDD1FDDDD2B00449A1F /* URLComponents+Bitso.swift in Sources */,
 				42C168491FD4D0B6007D96AD /* OrderBookResponse.swift in Sources */,
+				427ECBCF1FDDDC8800449A1F /* Enpoint.swift in Sources */,
+				427ECBDB1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift in Sources */,
+				427ECBD91FDDDCEA00449A1F /* BitsoAPI.swift in Sources */,
 				42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */,
+				427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */,
 				42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */,
 				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
+				427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */,
 				42ED24CB1FDD8E440097B63E /* ErrorResponse.swift in Sources */,
 				42C168461FD4D0B6007D96AD /* Ask.swift in Sources */,
-				42C1684F1FD4D0B6007D96AD /* Public Rest API.swift in Sources */,
+				427ECBD51FDDDCBB00449A1F /* OrderBookEndpoint.swift in Sources */,
+				427ECBD71FDDDCCA00449A1F /* TradesEndpoint.swift in Sources */,
 				42C1684A1FD4D0B6007D96AD /* Ticker.swift in Sources */,
 				42C168481FD4D0B6007D96AD /* OrderBook.swift in Sources */,
 				42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */,
