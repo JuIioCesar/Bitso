@@ -15,7 +15,11 @@ extension URLSession {
         var components = URLComponents.bitso
         components.path = endpoint.path
         components.queryItems = endpoint.queryItems
-        let request = URLRequest(url: components.url!)
+        guard let url = url else {
+            completion(nil, nil)
+            return
+        }
+        let request = URLRequest(url: components.url)
         let task = dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 completion(nil, nil)
