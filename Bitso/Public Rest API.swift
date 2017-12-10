@@ -8,54 +8,28 @@
 
 import Foundation
 
-enum Strings {
-
-    enum Public: String {
-        case availableBooks = "available_books/"
-        case ticker = "ticker/"
-        case orderBook = "order_book/"
-        case trades = "trades/"
-    }
-    
-    enum Private: String {
-        case accountStatus = "account_status/"
-        case phoneNumber = "phone_number/"
-        case phoneNumberVerification = "phone_verification/"
-        case balance = "balance/"
-        case fees = "fees/"
-        case userTrades = "user_trades/"
-        case openOrders = "open_orders"
-        case placeOrder = "orders/"
-        case fundingDestination = "funding_destination/"
-        case bitcoinWithdrawal = "bitcoin_withdrawal/"
-        case etherWithdrawal = "ether_withdrawal/"
-        case speiWithdrawal = "spei_withdrawal/"
-        case bankCodes = "mx_bank_codes/"
-    }
-}
-
-private extension URL {
+extension URLComponents {
     
     enum Scheme: String {
         case secure = "https"
     }
     
-    enum Enviroment: String {
-        case development = "api-dev.bitso.com"
-        case production = "api.bitso.com"
-    }
-    
-    static func bitsoComponents() -> URLComponents {
+    static var bitso: URLComponents {
         var components = URLComponents()
-        components.scheme = URL.Scheme.secure.rawValue
-        components.host = URL.Enviroment.development.rawValue
+        components.scheme = URLComponents.Scheme.secure.rawValue
+        components.host = "api-dev.bitso.com"
         return components
     }
 }
 
 extension URLSession {
-    func decodeJSONTask<T: Decodable>(_ type: T.Type, from url: URL, completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
-        let request = URLRequest(url: url)
+    func decodeJSONTask<T: Decodable>(_ type: T.Type,
+                                      from endpoint: Endpoint,
+                                      completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
+        var components = URLComponents.bitso
+        components.path = endpoint.path
+        components.queryItems = endpoint.queryItems
+        let request = URLRequest(url: components.url!)
         let task = dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 completion(nil, nil)
@@ -129,44 +103,34 @@ struct TradesEndpoint: Endpoint {
     }
 }
 
-
-extension URLSession {
+struct BitsoAPI {
+    let session: URLSession
+    
     func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
-        var components = URL.bitsoComponents()
         let endpoint = AvailableBooksEndpoint()
-        components.path = endpoint.path
-        components.queryItems = endpoint.queryItems
-        return decodeJSONTask(BooksResponse.self, from: components.url!, completion: completion)
+        return session.decodeJSONTask(BooksResponse.self, from: endpoint, completion: completion)
     }
-
+    
     func bookInfoTask(with book: Book,
                       completion: @escaping (TickerResponse?, BitsoError?) -> Void) -> URLSessionTask {
-        var components = URL.bitsoComponents()
         let endpoint = TickerEndpoint(book: book)
-        components.path = endpoint.path
-        components.queryItems = endpoint.queryItems
-        return decodeJSONTask(TickerResponse.self, from: components.url!, completion: completion)
+        return session.decodeJSONTask(TickerResponse.self, from: endpoint, completion: completion)
     }
-
+    
     func orderBookTask(with book: Book,
                        aggregate: Bool,
                        completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
-        var components = URL.bitsoComponents()
         let endpoint = OrderBookEndpoint(book: book, aggregate: aggregate)
-        components.path = endpoint.path
-        components.queryItems = endpoint.queryItems
-        return decodeJSONTask(OrderBookResponse.self, from: components.url!, completion: completion)
+        return session.decodeJSONTask(OrderBookResponse.self, from: endpoint, completion: completion)
     }
-
+    
     func tradesTask(with book: Book,
                     marker: String? = nil,
                     ascending: Bool,
-                    limit: Int = 100,
+                    limit: Int,
                     completion: @escaping (TradesResponse?, BitsoError?) -> Void ) -> URLSessionTask {
-        var components = URL.bitsoComponents()
         let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
-        components.path = endpoint.path
-        components.queryItems = endpoint.queryItems
-        return decodeJSONTask(TradesResponse.self, from: components.url!, completion: completion)
+        return session.decodeJSONTask(TradesResponse.self, from: endpoint, completion: completion)
     }
 }
+
