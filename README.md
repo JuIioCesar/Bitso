@@ -3,31 +3,52 @@
 
 ### How to use
 
-The Bitso framework allows you to create URLSessionTasks that return bitso API models such as `Orders`, `Books`, `Ticker`, and `Trades`.
+Think of the Bitso framework like a set of expensive functions that allow you to get `Orders`, `Books`, `Ticker`, and `Trades`.
 
 ```
-let getAvailableBooksTask = URLSession.shared.getAvailableBooksTask { (books) in
-    let tradesTask = URLSession.shared.tradesTask(with: books!.payload.first!, completion: { (trades) in
-        trades?.payload.forEach({ (trade) in
-        print("""
-            Book: \(trade.book)
-            Trade: \(trade.tid)
-            Amount: \(trade.amount)
-            Price: \(trade.price)
-            Created at: \(trade.created_at)
-            """)
-            })
-        })
-    tradesTask.resume()
+let bitso = BitsoAPI(session: URLSession.shared)
+let orderBookExpectation = expectation(description: "orderBookExpectation")
+let bookInfoExpectation = expectation(description: "bookInfoExpectation")
+let tradeExpectation = expectation(description: "tradeExpectation")
+
+let getAvailableBooksTask = bitso.getAvailableBooksTask { (books, error) in
+    guard let books = books else { return }
+    guard let book = books.payload.first else { return }
+    let orderBookTask = bitso.orderBookTask(with: book, aggregate: true, completion: { (orderbook, error) in
+        XCTAssert(orderbook != nil || error != nil, "OrderBook or error should be retrieved")
+        orderBookExpectation.fulfill()
+    })
+    let bookInfoTask = bitso.bookInfoTask(with: book, completion: { (ticker, error) in
+        XCTAssert(ticker != nil || error != nil, "Ticker or error should be retrieved")
+        bookInfoExpectation.fulfill()
+    })
+    let tradeTask = bitso.tradesTask(with: book, ascending: true, limit: 10, completion: { (trades, error) in
+        XCTAssert(trades != nil || error != nil, "Ticker or error should be retrieved")
+        tradeExpectation.fulfill()
+    })
+    tradeTask.resume()
+    orderBookTask.resume()
+    bookInfoTask.resume()
 }
 getAvailableBooksTask.resume()
+wait(for: [orderBookExpectation, bookInfoExpectation, tradeExpectation], timeout: 30.0)
 ```
 
 ### How to contribute
 
+**Tasks**
+
+Here are some tasks:
+
+- [x] Public API
+- [ ] Private API
+- [ ] WebSockets
+- [ ] Transfer
+- [ ] Account creation
+
 **API Response Models**
 
-The workflow for adding endpoints it's mostly automated and it's the next one:
+To build the models I usually use: http://www.json4swift.com with the latest Swift 4 Codeable Mapping along with this process:
 
 1. Go to **https://bitso.com/api_info**
 2. Choose a private endpoint. You can raise an issue and assign it to yourself to communicate that you are working on an specific endpoint
@@ -43,12 +64,6 @@ The workflow for adding endpoints it's mostly automated and it's the next one:
 12. Rename structs to verbose names like `Book` instead of `Payload` and `BooksResponse` instead of `Json4Swift_Base`
 13. Add your name to the contributors list
 14. Raise a Pull Request
-
-**Refactoring**
-
-The `Public Rest API.swift` file is a mess. I could use some cleaning.
-
-To build the models I usually use: http://www.json4swift.com with the latest Swift 4 Codeable Mapping
 
 **Contributors**
 
