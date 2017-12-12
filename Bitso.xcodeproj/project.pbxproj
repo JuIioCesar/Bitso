@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		425BA2691FE0718F009105E3 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 425BA2681FE0718F009105E3 /* Cartfile */; };
 		425BA26C1FE07212009105E3 /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */; };
+		425BA2721FE07860009105E3 /* ClientSuscriptionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */; };
+		425BA2751FE07E2D009105E3 /* ServerSubscriptionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */; };
+		425BA2791FE07EE7009105E3 /* TradesChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */; };
+		425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */; };
 		427ECBCF1FDDDC8800449A1F /* Enpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBCE1FDDDC8800449A1F /* Enpoint.swift */; };
 		427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */; };
 		427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */; };
@@ -48,6 +52,10 @@
 /* Begin PBXFileReference section */
 		425BA2681FE0718F009105E3 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = Carthage/Build/iOS/SwiftWebSocket.framework; sourceTree = "<group>"; };
+		425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSuscriptionMessage.swift; sourceTree = "<group>"; };
+		425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSubscriptionResponseMessage.swift; sourceTree = "<group>"; };
+		425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesChannelMessage.swift; sourceTree = "<group>"; };
+		425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesChannelMessageResponse.swift; sourceTree = "<group>"; };
 		427ECBCE1FDDDC8800449A1F /* Enpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enpoint.swift; sourceTree = "<group>"; };
 		427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBooksEndpoint.swift; sourceTree = "<group>"; };
 		427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerEndpoint.swift; sourceTree = "<group>"; };
@@ -105,6 +113,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		425BA2701FE07784009105E3 /* Trades Channel */ = {
+			isa = PBXGroup;
+			children = (
+				425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */,
+				425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */,
+			);
+			path = "Trades Channel";
+			sourceTree = "<group>";
+		};
+		425BA2731FE07D4E009105E3 /* WebSockets */ = {
+			isa = PBXGroup;
+			children = (
+				425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */,
+				425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */,
+				425BA2701FE07784009105E3 /* Trades Channel */,
+			);
+			path = WebSockets;
+			sourceTree = "<group>";
+		};
+		425BA2761FE07EB4009105E3 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				42C168431FD4D0B6007D96AD /* Books */,
+				42C168361FD4D0B6007D96AD /* OrderBook */,
+				42C1683B1FD4D0B6007D96AD /* Ticker */,
+				42C1683E1FD4D0B6007D96AD /* Trades */,
+				427ECBDE1FDDDD6900449A1F /* Endpoints */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
 		427ECBDE1FDDDD6900449A1F /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,11 +182,8 @@
 			children = (
 				42C1681F1FD4D095007D96AD /* Bitso.h */,
 				42ED24CD1FDD8E4B0097B63E /* Error */,
-				42C168431FD4D0B6007D96AD /* Books */,
-				42C168361FD4D0B6007D96AD /* OrderBook */,
-				42C1683B1FD4D0B6007D96AD /* Ticker */,
-				42C1683E1FD4D0B6007D96AD /* Trades */,
-				427ECBDE1FDDDD6900449A1F /* Endpoints */,
+				425BA2761FE07EB4009105E3 /* Public */,
+				425BA2731FE07D4E009105E3 /* WebSockets */,
 				427ECBDA1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift */,
 				427ECBDC1FDDDD2B00449A1F /* URLComponents+Bitso.swift */,
 				427ECBD81FDDDCEA00449A1F /* BitsoAPI.swift */,
@@ -352,16 +388,20 @@
 				427ECBDB1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift in Sources */,
 				427ECBD91FDDDCEA00449A1F /* BitsoAPI.swift in Sources */,
 				42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */,
+				425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */,
 				427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */,
 				42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */,
+				425BA2721FE07860009105E3 /* ClientSuscriptionMessage.swift in Sources */,
 				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
 				427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */,
 				42ED24CB1FDD8E440097B63E /* ErrorResponse.swift in Sources */,
 				42C168461FD4D0B6007D96AD /* Ask.swift in Sources */,
 				427ECBD51FDDDCBB00449A1F /* OrderBookEndpoint.swift in Sources */,
 				427ECBD71FDDDCCA00449A1F /* TradesEndpoint.swift in Sources */,
+				425BA2791FE07EE7009105E3 /* TradesChannelMessage.swift in Sources */,
 				42C1684A1FD4D0B6007D96AD /* Ticker.swift in Sources */,
 				42C168481FD4D0B6007D96AD /* OrderBook.swift in Sources */,
+				425BA2751FE07E2D009105E3 /* ServerSubscriptionResponseMessage.swift in Sources */,
 				42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */,
 				42C168471FD4D0B6007D96AD /* Bid.swift in Sources */,
 			);

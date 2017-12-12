@@ -7,11 +7,13 @@
 //
 
 import Foundation
-
+import SwiftWebSocket
 
 struct BitsoAPI {
     let session: URLSession
-    
+}
+
+extension BitsoAPI {
     public func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = AvailableBooksEndpoint()
         return session.decodeJSONTask(from: endpoint, completion: completion)
@@ -38,6 +40,33 @@ struct BitsoAPI {
         let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
         return session.decodeJSONTask(from: endpoint, completion: completion)
     }
-    
-    
+
+}
+
+extension BitsoAPI {
+    func echoTest() {
+        //TODO: make a wrapper here...
+        let socket = WebSocket("wss://ws.bitso.com")
+        socket.event.open = {
+            let suscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "trades")
+            let suscriptionData = try! JSONEncoder().encode(suscription)
+            let json = String(data: suscriptionData, encoding: String.Encoding.utf8)!
+            socket.send(text:json)
+        }
+        socket.event.close = { code, reason, clean in
+            print("close")
+        }
+        socket.event.error = { error in
+            print("error \(error)")
+        }
+        socket.event.message = { message in
+            if let text = message as? String,
+               let data = text.data(using: .utf8),
+               let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
+                result.payload.forEach({ (message) in
+                    print("\(result.type + "amount" + message.a + "rate:" + message.r + "value:" + message.v)")
+                })
+            }
+        }
+    }
 }

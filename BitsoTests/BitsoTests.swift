@@ -15,9 +15,12 @@ func print(_ error: BitsoError?) {
 
 class BitsoTests: XCTestCase {
     //TODO: ⚠️ Remove integration test
+    
+    let bitso = BitsoAPI(session: URLSession.shared)
+    
     func testPublicAPIs() {
         
-        let bitso = BitsoAPI(session: URLSession.shared)
+        
         let orderBookExpectation = expectation(description: "orderBookExpectation")
         let bookInfoExpectation = expectation(description: "bookInfoExpectation")
         let tradeExpectation = expectation(description: "tradeExpectation")
@@ -25,16 +28,16 @@ class BitsoTests: XCTestCase {
         let getAvailableBooksTask = bitso.getAvailableBooksTask { (books, error) in
             guard let books = books else { return }
             guard let book = books.payload.first else { return }
-            let orderBookTask = bitso.orderBookTask(with: book, aggregate: true, completion: { (orderbook, error) in
+            let orderBookTask = self.bitso.orderBookTask(with: book, aggregate: true, completion: { (orderbook, error) in
                 XCTAssert(orderbook != nil, "OrderBook should be retrieved")
                 orderBookExpectation.fulfill()
 
             })
-            let bookInfoTask = bitso.bookInfoTask(with: book, completion: { (ticker, error) in
+            let bookInfoTask = self.bitso.bookInfoTask(with: book, completion: { (ticker, error) in
                 XCTAssert(ticker != nil, "Ticker should be retrieved")
                 bookInfoExpectation.fulfill()
             })
-            let tradeTask = bitso.tradesTask(with: book, ascending: true, limit: 10, completion: { (trades, error) in
+            let tradeTask = self.bitso.tradesTask(with: book, ascending: true, limit: 10, completion: { (trades, error) in
                 XCTAssert(trades != nil, "Trades should be retrieved")
                 tradeExpectation.fulfill()
             })
@@ -46,5 +49,9 @@ class BitsoTests: XCTestCase {
         wait(for: [orderBookExpectation, bookInfoExpectation, tradeExpectation], timeout: 30.0)
     }
 
-    
+    func testWebSockets() {
+        bitso.echoTest()
+        let webSocketExpectation = expectation(description: "webSocketExpectation")
+        wait(for: [webSocketExpectation], timeout: 30.0)
+    }
 }
