@@ -9,8 +9,7 @@
 import Foundation
 
 extension URLSession {
-    func decodeJSONTask<T: Decodable>(_ type: T.Type,
-                                      from endpoint: Endpoint,
+    func decodeJSONTask<T: Decodable>(from endpoint: Endpoint,
                                       completion: @escaping (T?, BitsoError?) -> () ) -> URLSessionTask {
         var components = URLComponents.bitso
         components.path = endpoint.path
@@ -22,7 +21,7 @@ extension URLSession {
                 completion(nil, nil)
                 return
             }
-            let result = try? JSONDecoder().decode(type.self, from: data)
+            let result = try? JSONDecoder().decode(T.self, from: data)
             let error = try? JSONDecoder().decode(ErrorResponse.self, from: data)
             completion(result, error?.error)
         }

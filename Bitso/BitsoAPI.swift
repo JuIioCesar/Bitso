@@ -14,20 +14,20 @@ struct BitsoAPI {
     
     public func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = AvailableBooksEndpoint()
-        return session.decodeJSONTask(BooksResponse.self, from: endpoint, completion: completion)
+        return session.decodeJSONTask(from: endpoint, completion: completion)
     }
     
     public func bookInfoTask(with book: Book,
                       completion: @escaping (TickerResponse?, BitsoError?) -> Void) -> URLSessionTask {
         let endpoint = TickerEndpoint(book: book)
-        return session.decodeJSONTask(TickerResponse.self, from: endpoint, completion: completion)
+        return session.decodeJSONTask(from: endpoint, completion: completion)
     }
     
     public func orderBookTask(with book: Book,
                        aggregate: Bool,
                        completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = OrderBookEndpoint(book: book, aggregate: aggregate)
-        return session.decodeJSONTask(OrderBookResponse.self, from: endpoint, completion: completion)
+        return session.decodeJSONTask(from: endpoint, completion: completion)
     }
     
     public func tradesTask(with book: Book,
@@ -36,6 +36,6 @@ struct BitsoAPI {
                     limit: Int,
                     completion: @escaping (TradesResponse?, BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
-        return session.decodeJSONTask(TradesResponse.self, from: endpoint, completion: completion)
+        return session.decodeJSONTask(from: endpoint, completion: completion)
     }
 }
