@@ -13,6 +13,8 @@
 		425BA2751FE07E2D009105E3 /* ServerSubscriptionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */; };
 		425BA2791FE07EE7009105E3 /* TradesChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */; };
 		425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */; };
+		425BA27D1FE0892F009105E3 /* DiffOrdersChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA27B1FE0892F009105E3 /* DiffOrdersChannelMessage.swift */; };
+		425BA27E1FE0892F009105E3 /* DiffOrdersChannelMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA27C1FE0892F009105E3 /* DiffOrdersChannelMessageResponse.swift */; };
 		427ECBCF1FDDDC8800449A1F /* Enpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBCE1FDDDC8800449A1F /* Enpoint.swift */; };
 		427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */; };
 		427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */; };
@@ -56,6 +58,8 @@
 		425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSubscriptionResponseMessage.swift; sourceTree = "<group>"; };
 		425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesChannelMessage.swift; sourceTree = "<group>"; };
 		425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesChannelMessageResponse.swift; sourceTree = "<group>"; };
+		425BA27B1FE0892F009105E3 /* DiffOrdersChannelMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffOrdersChannelMessage.swift; sourceTree = "<group>"; };
+		425BA27C1FE0892F009105E3 /* DiffOrdersChannelMessageResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiffOrdersChannelMessageResponse.swift; sourceTree = "<group>"; };
 		427ECBCE1FDDDC8800449A1F /* Enpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enpoint.swift; sourceTree = "<group>"; };
 		427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBooksEndpoint.swift; sourceTree = "<group>"; };
 		427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerEndpoint.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */,
 				425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */,
 				425BA2701FE07784009105E3 /* Trades Channel */,
+				425BA27F1FE08AA6009105E3 /* Diff Orders Channel */,
 			);
 			path = WebSockets;
 			sourceTree = "<group>";
@@ -142,6 +147,15 @@
 				427ECBDE1FDDDD6900449A1F /* Endpoints */,
 			);
 			path = Public;
+			sourceTree = "<group>";
+		};
+		425BA27F1FE08AA6009105E3 /* Diff Orders Channel */ = {
+			isa = PBXGroup;
+			children = (
+				425BA27C1FE0892F009105E3 /* DiffOrdersChannelMessageResponse.swift */,
+				425BA27B1FE0892F009105E3 /* DiffOrdersChannelMessage.swift */,
+			);
+			path = "Diff Orders Channel";
 			sourceTree = "<group>";
 		};
 		427ECBDE1FDDDD6900449A1F /* Endpoints */ = {
@@ -383,9 +397,11 @@
 				42C1684C1FD4D0B6007D96AD /* Trade.swift in Sources */,
 				42C1684D1FD4D0B6007D96AD /* TradesResponse.swift in Sources */,
 				427ECBDD1FDDDD2B00449A1F /* URLComponents+Bitso.swift in Sources */,
+				425BA27D1FE0892F009105E3 /* DiffOrdersChannelMessage.swift in Sources */,
 				42C168491FD4D0B6007D96AD /* OrderBookResponse.swift in Sources */,
 				427ECBCF1FDDDC8800449A1F /* Enpoint.swift in Sources */,
 				427ECBDB1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift in Sources */,
+				425BA27E1FE0892F009105E3 /* DiffOrdersChannelMessageResponse.swift in Sources */,
 				427ECBD91FDDDCEA00449A1F /* BitsoAPI.swift in Sources */,
 				42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */,
 				425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */,
