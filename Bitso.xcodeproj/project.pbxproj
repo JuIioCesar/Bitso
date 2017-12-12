@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		425BA2691FE0718F009105E3 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 425BA2681FE0718F009105E3 /* Cartfile */; };
+		425BA26C1FE07212009105E3 /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */; };
 		427ECBCF1FDDDC8800449A1F /* Enpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBCE1FDDDC8800449A1F /* Enpoint.swift */; };
 		427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */; };
 		427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */; };
@@ -44,6 +46,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		425BA2681FE0718F009105E3 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = Carthage/Build/iOS/SwiftWebSocket.framework; sourceTree = "<group>"; };
 		427ECBCE1FDDDC8800449A1F /* Enpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enpoint.swift; sourceTree = "<group>"; };
 		427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableBooksEndpoint.swift; sourceTree = "<group>"; };
 		427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerEndpoint.swift; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425BA26C1FE07212009105E3 /* SwiftWebSocket.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		425BA26A1FE07212009105E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		427ECBDE1FDDDD6900449A1F /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,9 +121,11 @@
 			isa = PBXGroup;
 			children = (
 				42C168521FD4D2E8007D96AD /* README.md */,
+				425BA2681FE0718F009105E3 /* Cartfile */,
 				42C1681E1FD4D095007D96AD /* Bitso */,
 				42C168291FD4D095007D96AD /* BitsoTests */,
 				42C1681D1FD4D095007D96AD /* Products */,
+				425BA26A1FE07212009105E3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -219,6 +234,7 @@
 				42C168181FD4D095007D96AD /* Frameworks */,
 				42C168191FD4D095007D96AD /* Headers */,
 				42C1681A1FD4D095007D96AD /* Resources */,
+				425BA26D1FE0721B009105E3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -260,7 +276,7 @@
 					42C1681B1FD4D095007D96AD = {
 						CreatedOnToolsVersion = 9.1;
 						LastSwiftMigration = 0910;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					42C168241FD4D095007D96AD = {
 						CreatedOnToolsVersion = 9.1;
@@ -291,6 +307,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				425BA2691FE0718F009105E3 /* Cartfile in Resources */,
 				42C168531FD4D2E8007D96AD /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,6 +320,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		425BA26D1FE0721B009105E3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftWebSocket.framework",
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/SwiftWebSocket.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		42C168171FD4D095007D96AD /* Sources */ = {
@@ -469,16 +504,22 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Bitso/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.julio.Bitso;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -491,16 +532,22 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Bitso/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.julio.Bitso;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

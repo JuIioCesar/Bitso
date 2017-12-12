@@ -38,4 +38,6 @@ struct BitsoAPI {
         let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
         return session.decodeJSONTask(from: endpoint, completion: completion)
     }
+    
+    
 }
