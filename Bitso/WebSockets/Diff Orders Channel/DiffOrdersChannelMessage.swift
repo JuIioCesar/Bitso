@@ -13,13 +13,13 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct DiffOrdersChannelMessage : Codable {
-	let d : Int?
-	let r : Double?
-	let t : Int?
-	let a : Double?
-	let v : Double?
-	let o : String?
-
+	let d : Int 
+	let r : String
+	let t : Int
+	let a : String?
+	let v : String?
+	let o : String
+    let s : String
 	enum CodingKeys: String, CodingKey {
 
 		case d = "d"
@@ -28,16 +28,18 @@ struct DiffOrdersChannelMessage : Codable {
 		case a = "a"
 		case v = "v"
 		case o = "o"
+        case s = "s"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		d = try values.decodeIfPresent(Int.self, forKey: .d)
-		r = try values.decodeIfPresent(Double.self, forKey: .r)
-		t = try values.decodeIfPresent(Int.self, forKey: .t)
-		a = try values.decodeIfPresent(Double.self, forKey: .a)
-		v = try values.decodeIfPresent(Double.self, forKey: .v)
-		o = try values.decodeIfPresent(String.self, forKey: .o)
+		d = try values.decode(Int.self, forKey: .d)
+		r = try values.decode(String.self, forKey: .r)
+		t = try values.decode(Int.self, forKey: .t)
+		a = try values.decodeIfPresent(String.self, forKey: .a)
+		v = try values.decodeIfPresent(String.self, forKey: .v)
+		o = try values.decode(String.self, forKey: .o)
+        s = try values.decode(String.self, forKey: .s)
 	}
 
 }

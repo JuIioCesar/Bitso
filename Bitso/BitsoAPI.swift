@@ -48,7 +48,7 @@ extension BitsoAPI {
         //TODO: make a wrapper here...
         let socket = WebSocket("wss://ws.bitso.com")
         socket.event.open = {
-            let suscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "trades")
+            let suscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "diff-orders") //trades
             let suscriptionData = try! JSONEncoder().encode(suscription)
             let json = String(data: suscriptionData, encoding: String.Encoding.utf8)!
             socket.send(text:json)
@@ -61,12 +61,23 @@ extension BitsoAPI {
         }
         socket.event.message = { message in
             if let text = message as? String,
-               let data = text.data(using: .utf8),
-               let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
-                result.payload.forEach({ (message) in
-                    print("\(result.type + "amount" + message.a + "rate:" + message.r + "value:" + message.v)")
-                })
+                let data = text.data(using: .utf8) {
+                
+               if let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
+                    result.payload.forEach({ (message) in
+                        print("\(result.type + "amount" + message.a + "rate:" + message.r + "value:" + message.v)")
+                    })
+                }
+                
+                print(text)
+                if let result = try? JSONDecoder().decode(DiffOrdersChannelMessageResponse.self, from: data) {
+                    result.payload.forEach({ (message) in
+                        print("\(message.o)")
+                    })
+                }
+                
             }
+            
         }
     }
 }

@@ -13,10 +13,10 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct DiffOrdersChannelMessageResponse : Codable {
-	let type : String?
-	let book : String?
-	let sequence : Int?
-	let payload : [DiffOrdersChannelMessage]?
+	let type : String
+	let book : String
+	let sequence : Int
+	let payload : [DiffOrdersChannelMessage]
 
 	enum CodingKeys: String, CodingKey {
 
@@ -28,10 +28,10 @@ struct DiffOrdersChannelMessageResponse : Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		type = try values.decodeIfPresent(String.self, forKey: .type)
-		book = try values.decodeIfPresent(String.self, forKey: .book)
-		sequence = try values.decodeIfPresent(Int.self, forKey: .sequence)
-		payload = try values.decodeIfPresent([DiffOrdersChannelMessage].self, forKey: .payload)
+		type = try values.decode(String.self, forKey: .type)
+		book = try values.decode(String.self, forKey: .book)
+		sequence = try values.decode(Int.self, forKey: .sequence)
+		payload = try values.decode([DiffOrdersChannelMessage].self, forKey: .payload)
 	}
 
 }
