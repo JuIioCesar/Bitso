@@ -40,18 +40,27 @@ extension BitsoAPI {
         let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
         return session.decodeJSONTask(from: endpoint, completion: completion)
     }
+}
 
+//TODO: Find a better way to do this:
+extension ClientSuscriptionMessage {
+    var json: String {
+        let suscriptionData = try! JSONEncoder().encode(self)
+        let json = String(data: suscriptionData, encoding: String.Encoding.utf8)!
+        return json
+    }
 }
 
 extension BitsoAPI {
-    func echoTest() {
-        //TODO: make a wrapper here...
+    func webSocketTest() {
         let socket = WebSocket("wss://ws.bitso.com")
         socket.event.open = {
-            let suscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "diff-orders") //trades
-            let suscriptionData = try! JSONEncoder().encode(suscription)
-            let json = String(data: suscriptionData, encoding: String.Encoding.utf8)!
-            socket.send(text:json)
+            let ordersSuscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "orders")
+            let diffOrdersSuscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "diff-orders")
+            let tradesSuscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "trades")
+            socket.send(text:ordersSuscription.json)
+            socket.send(text:diffOrdersSuscription.json)
+            socket.send(text:tradesSuscription.json)
         }
         socket.event.close = { code, reason, clean in
             print("close")
@@ -61,23 +70,28 @@ extension BitsoAPI {
         }
         socket.event.message = { message in
             if let text = message as? String,
-                let data = text.data(using: .utf8) {
+               let data = text.data(using: .utf8) {
                 
-               if let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
+               print(text)
+                
+                if let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
                     result.payload.forEach({ (message) in
-                        print("\(result.type + "amount" + message.a + "rate:" + message.r + "value:" + message.v)")
+                        print("💸\(result.type + "amount" + message.amount + "rate:" + message.rate + "value:" + message.value)")
                     })
                 }
                 
-                print(text)
                 if let result = try? JSONDecoder().decode(DiffOrdersChannelMessageResponse.self, from: data) {
                     result.payload.forEach({ (message) in
-                        print("\(message.o)")
+                        print("✅🔴\(message.orderIdentifier)")
                     })
                 }
                 
+                if let result = try? JSONDecoder().decode(OrdersChannelMessageResponse.self, from: data) {
+                    result.payload.asks.forEach({ (ask) in
+                        print("💰 \(ask.amount)")
+                    })
+                }
             }
-            
         }
     }
 }

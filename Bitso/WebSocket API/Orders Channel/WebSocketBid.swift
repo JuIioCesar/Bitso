@@ -12,34 +12,35 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct DiffOrdersChannelMessage : Codable {
-	let d : Int 
-	let r : String
-	let t : Int
-	let a : String?
-	let v : String?
-	let o : String
-    let s : String
-	enum CodingKeys: String, CodingKey {
-
-		case d = "d"
-		case r = "r"
-		case t = "t"
-		case a = "a"
-		case v = "v"
-		case o = "o"
-        case s = "s"
-	}
-
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-		d = try values.decode(Int.self, forKey: .d)
-		r = try values.decode(String.self, forKey: .r)
-		t = try values.decode(Int.self, forKey: .t)
-		a = try values.decodeIfPresent(String.self, forKey: .a)
-		v = try values.decodeIfPresent(String.self, forKey: .v)
-		o = try values.decode(String.self, forKey: .o)
-        s = try values.decode(String.self, forKey: .s)
-	}
-
+struct WebSocketBid : Codable {
+    let orderIdentifier : String
+    let rate : Double
+    let amount : Double
+    let value : Double
+    let sell : Int
+    let unixTimestamp : Int
+    let status : String
+    
+    enum CodingKeys: String, CodingKey {
+        
+        case orderIdentifier = "o"
+        case rate = "r"
+        case amount = "a"
+        case value = "v"
+        case sell = "t"
+        case unixTimestamp = "d"
+        case status = "s"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        orderIdentifier = try values.decode(String.self, forKey: .orderIdentifier)
+        rate = try values.decode(Double.self, forKey: .rate)
+        amount = try values.decode(Double.self, forKey: .amount)
+        value = try values.decode(Double.self, forKey: .value)
+        sell = try values.decode(Int.self, forKey: .sell)
+        unixTimestamp = try values.decode(Int.self, forKey: .unixTimestamp)
+        status = try values.decode(String.self, forKey: .status)
+    }
+    
 }

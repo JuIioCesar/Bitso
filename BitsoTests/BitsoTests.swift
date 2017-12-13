@@ -50,7 +50,7 @@ class BitsoTests: XCTestCase {
     }
 
     func testWebSockets() {
-        bitso.echoTest()
+        bitso.webSocketTest()
         let webSocketExpectation = expectation(description: "webSocketExpectation")
         wait(for: [webSocketExpectation], timeout: 30.0)
     }

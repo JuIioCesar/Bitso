@@ -42,7 +42,7 @@ Here are some tasks:
 
 - [x] Public API
 - [ ] Private API
-- [ ] WebSockets
+- [ ] WebSockets ( Work in progress )
 - [ ] Transfer
 - [ ] Account creation
 

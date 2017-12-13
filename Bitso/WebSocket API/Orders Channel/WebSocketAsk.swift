@@ -12,26 +12,35 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct TradesChannelMessage : Codable {
-	let i : Int
-	let a : String
-	let r : String
-	let v : String
+struct WebSocketAsk : Codable {
+	let orderIdentifier : String
+	let rate : Double
+	let amount : Double
+	let value : Double
+	let sell : Int
+	let unixTimestamp : Int
+	let status : String
 
 	enum CodingKeys: String, CodingKey {
 
-		case i = "i"
-		case a = "a"
-		case r = "r"
-		case v = "v"
+		case orderIdentifier = "o"
+		case rate = "r"
+		case amount = "a"
+		case value = "v"
+		case sell = "t"
+		case unixTimestamp = "d"
+		case status = "s"
 	}
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-		i = try values.decode(Int.self, forKey: .i)
-		a = try values.decode(String.self, forKey: .a)
-		r = try values.decode(String.self, forKey: .r)
-		v = try values.decode(String.self, forKey: .v)
+		orderIdentifier = try values.decode(String.self, forKey: .orderIdentifier)
+		rate = try values.decode(Double.self, forKey: .rate)
+		amount = try values.decode(Double.self, forKey: .amount)
+		value = try values.decode(Double.self, forKey: .value)
+		sell = try values.decode(Int.self, forKey: .sell)
+		unixTimestamp = try values.decode(Int.self, forKey: .unixTimestamp)
+		status = try values.decode(String.self, forKey: .status)
 	}
 
 }
