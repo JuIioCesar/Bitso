@@ -13,38 +13,54 @@ struct BitsoAPI {
 }
 
 extension BitsoAPI {
-    public func getAvailableBooksTask(completion: @escaping (BooksResponse?, BitsoError?) -> Void ) -> URLSessionTask {
+    public func getAvailableBooksTask(success: @escaping (BooksResponse) -> Void,
+                                      failure: @escaping (BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = AvailableBooksEndpoint()
-        return session.decodeJSONTask(from: endpoint, completion: completion)
+        return session.decodeJSONTask(from: endpoint,
+                                      success: success,
+                                      failure: failure)
     }
     
     public func bookInfoTask(with book: Book,
-                      completion: @escaping (TickerResponse?, BitsoError?) -> Void) -> URLSessionTask {
+                             success: @escaping (TickerResponse) -> Void,
+                             failure: @escaping (BitsoError?) -> Void ) -> URLSessionTask {
         let endpoint = TickerEndpoint(book: book)
-        return session.decodeJSONTask(from: endpoint, completion: completion)
+        return session.decodeJSONTask(from: endpoint,
+                                      success: success,
+                                      failure: failure)
     }
     
     public func orderBookTask(with book: Book,
-                       aggregate: Bool,
-                       completion: @escaping (OrderBookResponse?, BitsoError?) -> Void ) -> URLSessionTask {
-        let endpoint = OrderBookEndpoint(book: book, aggregate: aggregate)
-        return session.decodeJSONTask(from: endpoint, completion: completion)
+                              aggregate: Bool,
+                              success: @escaping (OrderBookResponse) -> Void,
+                              failure: @escaping (BitsoError?) -> Void ) -> URLSessionTask {
+        let endpoint = OrderBookEndpoint(book: book,
+                                         aggregate: aggregate)
+        return session.decodeJSONTask(from: endpoint,
+                                      success: success,
+                                      failure: failure)
     }
     
     public func tradesTask(with book: Book,
                     marker: String? = nil,
                     ascending: Bool,
                     limit: Int,
-                    completion: @escaping (TradesResponse?, BitsoError?) -> Void ) -> URLSessionTask {
-        let endpoint = TradesEndpoint(book: book, marker: marker, ascending: ascending, limit: limit)
-        return session.decodeJSONTask(from: endpoint, completion: completion)
+                    success: @escaping (TradesResponse) -> Void,
+                    failure: @escaping (BitsoError?) -> Void ) -> URLSessionTask {
+        let endpoint = TradesEndpoint(book: book,
+                                      marker: marker,
+                                      ascending: ascending,
+                                      limit: limit)
+        return session.decodeJSONTask(from: endpoint,
+                                      success: success,
+                                      failure: failure)
     }
 }
 
 extension BitsoAPI {
     func webSocket(with book: Book) {
-        let orders = SuscriptionMessage(action: "subscribe", book: book.book, type: "orders")
-        let diffOrders = SuscriptionMessage(action: "subscribe", book: book.book, type: "diff-orders")
+//        let orders = SuscriptionMessage(action: "subscribe", book: book.book, type: "orders")
+//        let diffOrders = SuscriptionMessage(action: "subscribe", book: book.book, type: "diff-orders")
         let trades = SuscriptionMessage(action: "subscribe", book: book.book, type: "trades")
         let socket = Socket<TradesChannelMessageResponse>(suscription: trades, completion: { element in
             element.payload.forEach({ (message) in
