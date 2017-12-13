@@ -62,8 +62,8 @@ extension BitsoAPI {
 //        let orders = SuscriptionMessage(action: "subscribe", book: book.book, type: "orders")
 //        let diffOrders = SuscriptionMessage(action: "subscribe", book: book.book, type: "diff-orders")
         let trades = SuscriptionMessage(action: "subscribe", book: book.book, type: "trades")
-        let socket = Socket<TradesChannelMessageResponse>(suscription: trades, completion: { element in
-            element.payload.forEach({ (message) in
+        let socket = Socket<TradesChannelMessageResponse>(suscription: trades, completion: { message in
+            message.payload.forEach({ (message) in
                 print("$\(message.rate)MXN")
             })
         })

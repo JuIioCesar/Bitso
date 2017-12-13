@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-public struct ErrorResponse : Codable {
+public struct BitsoErrorResponse : Codable {
 	let success : Bool
 	let error : BitsoError
 

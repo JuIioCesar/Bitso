@@ -23,7 +23,7 @@ extension URLSession {
                 return
             }
             let result = try? JSONDecoder().decode(T.self, from: data)
-            let error = try? JSONDecoder().decode(ErrorResponse.self, from: data)
+            let error = try? JSONDecoder().decode(BitsoErrorResponse.self, from: data)
             if let result = result { success(result) }
             if let error = error { failure(error.error) }
         }

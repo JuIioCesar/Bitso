@@ -42,7 +42,7 @@
 		42C168501FD4D0B6007D96AD /* Book.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168441FD4D0B6007D96AD /* Book.swift */; };
 		42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C168451FD4D0B6007D96AD /* BooksResponse.swift */; };
 		42C168531FD4D2E8007D96AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42C168521FD4D2E8007D96AD /* README.md */; };
-		42ED24CB1FDD8E440097B63E /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ED24C91FDD8E440097B63E /* ErrorResponse.swift */; };
+		42ED24CB1FDD8E440097B63E /* BitsoErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ED24C91FDD8E440097B63E /* BitsoErrorResponse.swift */; };
 		42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ED24CA1FDD8E440097B63E /* BitsoError.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +95,7 @@
 		42C168441FD4D0B6007D96AD /* Book.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Book.swift; sourceTree = "<group>"; };
 		42C168451FD4D0B6007D96AD /* BooksResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BooksResponse.swift; sourceTree = "<group>"; };
 		42C168521FD4D2E8007D96AD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		42ED24C91FDD8E440097B63E /* ErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		42ED24C91FDD8E440097B63E /* BitsoErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsoErrorResponse.swift; sourceTree = "<group>"; };
 		42ED24CA1FDD8E440097B63E /* BitsoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsoError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -280,7 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				42ED24CA1FDD8E440097B63E /* BitsoError.swift */,
-				42ED24C91FDD8E440097B63E /* ErrorResponse.swift */,
+				42ED24C91FDD8E440097B63E /* BitsoErrorResponse.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -434,7 +434,7 @@
 				425BA2721FE07860009105E3 /* SuscriptionMessage.swift in Sources */,
 				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
 				427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */,
-				42ED24CB1FDD8E440097B63E /* ErrorResponse.swift in Sources */,
+				42ED24CB1FDD8E440097B63E /* BitsoErrorResponse.swift in Sources */,
 				42C168461FD4D0B6007D96AD /* Ask.swift in Sources */,
 				427ECBD51FDDDCBB00449A1F /* OrderBookEndpoint.swift in Sources */,
 				4256D14A1FE1759A00CBC02D /* WebSocketBid.swift in Sources */,
