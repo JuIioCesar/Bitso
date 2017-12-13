@@ -19,8 +19,6 @@ class BitsoTests: XCTestCase {
     let bitso = BitsoAPI(session: URLSession.shared)
     
     func testPublicAPIs() {
-        
-        
         let orderBookExpectation = expectation(description: "orderBookExpectation")
         let bookInfoExpectation = expectation(description: "bookInfoExpectation")
         let tradeExpectation = expectation(description: "tradeExpectation")
@@ -50,8 +48,13 @@ class BitsoTests: XCTestCase {
     }
 
     func testWebSockets() {
-        bitso.webSocketTest()
         let webSocketExpectation = expectation(description: "webSocketExpectation")
-        wait(for: [webSocketExpectation], timeout: 30.0)
+        let getAvailableBooksTask = bitso.getAvailableBooksTask { (books, error) in
+            guard let books = books else { return }
+            guard let book = books.payload.first else { return }
+            self.bitso.webSocket(with: book)
+        }
+        getAvailableBooksTask.resume()
+        wait(for: [webSocketExpectation], timeout: 3600.0)
     }
 }

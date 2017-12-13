@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftWebSocket
 
 struct BitsoAPI {
     let session: URLSession
@@ -42,56 +41,16 @@ extension BitsoAPI {
     }
 }
 
-//TODO: Find a better way to do this:
-extension SuscriptionMessage {
-    var json: String {
-        let suscriptionData = try! JSONEncoder().encode(self)
-        let json = String(data: suscriptionData, encoding: String.Encoding.utf8)!
-        return json
-    }
-}
-
 extension BitsoAPI {
-    func webSocketTest() {
-        let socket = WebSocket("wss://ws.bitso.com")
-        socket.event.open = {
-            let orders = SuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "orders")
-            let diffOrders = SuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "diff-orders")
-            let trades = SuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "trades")
-            socket.send(text:orders.json)
-            socket.send(text:diffOrders.json)
-            socket.send(text:trades.json)
-        }
-        socket.event.close = { code, reason, clean in
-            print("close")
-        }
-        socket.event.error = { error in
-            print("error \(error)")
-        }
-        socket.event.message = { message in
-            if let text = message as? String,
-               let data = text.data(using: .utf8) {
-                
-               print(text)
-                
-                if let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
-                    result.payload.forEach({ (message) in
-                        print("💸\(result.type + " amount: " + message.amount + " rate: " + message.rate + " value: " + message.value)")
-                    })
-                }
-                
-                if let result = try? JSONDecoder().decode(DiffOrdersChannelMessageResponse.self, from: data) {
-                    result.payload.forEach({ (message) in
-                        print("✅🔴\(message.orderIdentifier)")
-                    })
-                }
-                
-                if let result = try? JSONDecoder().decode(OrdersChannelMessageResponse.self, from: data) {
-                    result.payload.asks.forEach({ (ask) in
-                        print("💰 \(ask.amount)")
-                    })
-                }
-            }
-        }
+    func webSocket(with book: Book) {
+        let orders = SuscriptionMessage(action: "subscribe", book: book.book, type: "orders")
+        let diffOrders = SuscriptionMessage(action: "subscribe", book: book.book, type: "diff-orders")
+        let trades = SuscriptionMessage(action: "subscribe", book: book.book, type: "trades")
+        let socket = Socket<TradesChannelMessageResponse>(suscription: trades, completion: { element in
+            element.payload.forEach({ (message) in
+                print("$\(message.rate)MXN")
+            })
+        })
+        socket.open()
     }
 }

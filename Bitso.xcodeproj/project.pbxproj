@@ -11,6 +11,7 @@
 		4256D1451FE16D2D00CBC02D /* OrdersChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256D1411FE16D2D00CBC02D /* OrdersChannelMessage.swift */; };
 		4256D14A1FE1759A00CBC02D /* WebSocketBid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256D1481FE1759A00CBC02D /* WebSocketBid.swift */; };
 		4256D14B1FE1759A00CBC02D /* WebSocketAsk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256D1491FE1759A00CBC02D /* WebSocketAsk.swift */; };
+		4256D14D1FE1C05700CBC02D /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256D14C1FE1C05700CBC02D /* Socket.swift */; };
 		425BA2691FE0718F009105E3 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 425BA2681FE0718F009105E3 /* Cartfile */; };
 		425BA26C1FE07212009105E3 /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */; };
 		425BA2721FE07860009105E3 /* SuscriptionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2711FE0785F009105E3 /* SuscriptionMessage.swift */; };
@@ -60,6 +61,7 @@
 		4256D1411FE16D2D00CBC02D /* OrdersChannelMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersChannelMessage.swift; sourceTree = "<group>"; };
 		4256D1481FE1759A00CBC02D /* WebSocketBid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketBid.swift; sourceTree = "<group>"; };
 		4256D1491FE1759A00CBC02D /* WebSocketAsk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketAsk.swift; sourceTree = "<group>"; };
+		4256D14C1FE1C05700CBC02D /* Socket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
 		425BA2681FE0718F009105E3 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = Carthage/Build/iOS/SwiftWebSocket.framework; sourceTree = "<group>"; };
 		425BA2711FE0785F009105E3 /* SuscriptionMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuscriptionMessage.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		425BA2731FE07D4E009105E3 /* WebSocket API */ = {
 			isa = PBXGroup;
 			children = (
+				4256D14C1FE1C05700CBC02D /* Socket.swift */,
 				425BA2711FE0785F009105E3 /* SuscriptionMessage.swift */,
 				425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */,
 				425BA2701FE07784009105E3 /* Trades Channel */,
@@ -423,6 +426,7 @@
 				427ECBDB1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift in Sources */,
 				425BA27E1FE0892F009105E3 /* DiffOrdersChannelMessageResponse.swift in Sources */,
 				427ECBD91FDDDCEA00449A1F /* BitsoAPI.swift in Sources */,
+				4256D14D1FE1C05700CBC02D /* Socket.swift in Sources */,
 				42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */,
 				425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */,
 				427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */,
