@@ -13,7 +13,7 @@
 		4256D14B1FE1759A00CBC02D /* WebSocketAsk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256D1491FE1759A00CBC02D /* WebSocketAsk.swift */; };
 		425BA2691FE0718F009105E3 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 425BA2681FE0718F009105E3 /* Cartfile */; };
 		425BA26C1FE07212009105E3 /* SwiftWebSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */; };
-		425BA2721FE07860009105E3 /* ClientSuscriptionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */; };
+		425BA2721FE07860009105E3 /* SuscriptionMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2711FE0785F009105E3 /* SuscriptionMessage.swift */; };
 		425BA2751FE07E2D009105E3 /* ServerSubscriptionResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */; };
 		425BA2791FE07EE7009105E3 /* TradesChannelMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */; };
 		425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */; };
@@ -62,7 +62,7 @@
 		4256D1491FE1759A00CBC02D /* WebSocketAsk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebSocketAsk.swift; sourceTree = "<group>"; };
 		425BA2681FE0718F009105E3 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		425BA26B1FE07212009105E3 /* SwiftWebSocket.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftWebSocket.framework; path = Carthage/Build/iOS/SwiftWebSocket.framework; sourceTree = "<group>"; };
-		425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientSuscriptionMessage.swift; sourceTree = "<group>"; };
+		425BA2711FE0785F009105E3 /* SuscriptionMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuscriptionMessage.swift; sourceTree = "<group>"; };
 		425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerSubscriptionResponseMessage.swift; sourceTree = "<group>"; };
 		425BA2771FE07EE7009105E3 /* TradesChannelMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesChannelMessage.swift; sourceTree = "<group>"; };
 		425BA2781FE07EE7009105E3 /* TradesChannelMessageResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TradesChannelMessageResponse.swift; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		425BA2731FE07D4E009105E3 /* WebSocket API */ = {
 			isa = PBXGroup;
 			children = (
-				425BA2711FE0785F009105E3 /* ClientSuscriptionMessage.swift */,
+				425BA2711FE0785F009105E3 /* SuscriptionMessage.swift */,
 				425BA2741FE07E2C009105E3 /* ServerSubscriptionResponseMessage.swift */,
 				425BA2701FE07784009105E3 /* Trades Channel */,
 				425BA27F1FE08AA6009105E3 /* Diff Orders Channel */,
@@ -427,7 +427,7 @@
 				425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */,
 				427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */,
 				42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */,
-				425BA2721FE07860009105E3 /* ClientSuscriptionMessage.swift in Sources */,
+				425BA2721FE07860009105E3 /* SuscriptionMessage.swift in Sources */,
 				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
 				427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */,
 				42ED24CB1FDD8E440097B63E /* ErrorResponse.swift in Sources */,

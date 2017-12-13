@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct ClientSuscriptionMessage : Codable {
+struct SuscriptionMessage : Codable {
 	var action : String
 	var book : String
 	var type : String

@@ -43,7 +43,7 @@ extension BitsoAPI {
 }
 
 //TODO: Find a better way to do this:
-extension ClientSuscriptionMessage {
+extension SuscriptionMessage {
     var json: String {
         let suscriptionData = try! JSONEncoder().encode(self)
         let json = String(data: suscriptionData, encoding: String.Encoding.utf8)!
@@ -55,12 +55,12 @@ extension BitsoAPI {
     func webSocketTest() {
         let socket = WebSocket("wss://ws.bitso.com")
         socket.event.open = {
-            let ordersSuscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "orders")
-            let diffOrdersSuscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "diff-orders")
-            let tradesSuscription = ClientSuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "trades")
-            socket.send(text:ordersSuscription.json)
-            socket.send(text:diffOrdersSuscription.json)
-            socket.send(text:tradesSuscription.json)
+            let orders = SuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "orders")
+            let diffOrders = SuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "diff-orders")
+            let trades = SuscriptionMessage(action: "subscribe", book: "btc_mxn", type: "trades")
+            socket.send(text:orders.json)
+            socket.send(text:diffOrders.json)
+            socket.send(text:trades.json)
         }
         socket.event.close = { code, reason, clean in
             print("close")
@@ -76,7 +76,7 @@ extension BitsoAPI {
                 
                 if let result = try? JSONDecoder().decode(TradesChannelMessageResponse.self, from: data) {
                     result.payload.forEach({ (message) in
-                        print("💸\(result.type + "amount" + message.amount + "rate:" + message.rate + "value:" + message.value)")
+                        print("💸\(result.type + " amount: " + message.amount + " rate: " + message.rate + " value: " + message.value)")
                     })
                 }
                 
