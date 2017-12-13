@@ -14,18 +14,18 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 import Foundation
 public struct Trade : Codable {
 	let book : String
-	let created_at : String
+	let creationTimestamp : String
 	let amount : String
-	let maker_side : String
+	let makerSide : String
 	let price : String
     let tid : Int
 
 	enum CodingKeys: String, CodingKey {
 
 		case book = "book"
-		case created_at = "created_at"
+		case creationTimestamp = "created_at"
 		case amount = "amount"
-		case maker_side = "maker_side"
+		case makerSide = "maker_side"
 		case price = "price"
         case tid = "tid"
 	}
@@ -33,9 +33,9 @@ public struct Trade : Codable {
 	public init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
 		book = try values.decode(String.self, forKey: .book)
-		created_at = try values.decode(String.self, forKey: .created_at)
+		creationTimestamp = try values.decode(String.self, forKey: .creationTimestamp)
 		amount = try values.decode(String.self, forKey: .amount)
-		maker_side = try values.decode(String.self, forKey: .maker_side)
+		makerSide = try values.decode(String.self, forKey: .makerSide)
 		price = try values.decode(String.self, forKey: .price)
         tid = try values.decode(Int.self, forKey: .tid)
 	}

@@ -16,24 +16,24 @@ public struct Ticker : Codable {
 	let book : String
 	let volume : String
 	let high : String
-	let last : String
+	let lastTradedPrice : String
 	let low : String
-	let vwap : String
-	let ask : String
-	let bid : String
-	let created_at : String
+	let volumeWeightedAveragePrice : String
+	let lowestSellOrder : String
+	let highestBuyOrder : String
+	let creationTimestamp : String
 
 	enum CodingKeys: String, CodingKey {
 
 		case book = "book"
 		case volume = "volume"
 		case high = "high"
-		case last = "last"
+		case lastTradedPrice = "last"
 		case low = "low"
-		case vwap = "vwap"
-		case ask = "ask"
-		case bid = "bid"
-		case created_at = "created_at"
+		case volumeWeightedAveragePrice = "vwap"
+		case lowestSellOrder = "ask"
+		case highestBuyOrder = "bid"
+		case creationTimestamp = "created_at"
 	}
 
 	public init(from decoder: Decoder) throws {
@@ -41,12 +41,12 @@ public struct Ticker : Codable {
 		book = try values.decode(String.self, forKey: .book)
 		volume = try values.decode(String.self, forKey: .volume)
 		high = try values.decode(String.self, forKey: .high)
-		last = try values.decode(String.self, forKey: .last)
+		lastTradedPrice = try values.decode(String.self, forKey: .lastTradedPrice)
 		low = try values.decode(String.self, forKey: .low)
-		vwap = try values.decode(String.self, forKey: .vwap)
-		ask = try values.decode(String.self, forKey: .ask)
-		bid = try values.decode(String.self, forKey: .bid)
-		created_at = try values.decode(String.self, forKey: .created_at)
+		volumeWeightedAveragePrice = try values.decode(String.self, forKey: .volumeWeightedAveragePrice)
+		lowestSellOrder = try values.decode(String.self, forKey: .lowestSellOrder)
+		highestBuyOrder = try values.decode(String.self, forKey: .highestBuyOrder)
+		creationTimestamp = try values.decode(String.self, forKey: .creationTimestamp)
 	}
 
 }
