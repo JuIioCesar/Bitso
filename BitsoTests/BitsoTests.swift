@@ -57,7 +57,7 @@ class BitsoTests: XCTestCase {
             print(error)
         })
         getAvailableBooksTask.resume()
-        wait(for: [orderBookExpectation, bookInfoExpectation, tradeExpectation], timeout: 300.0)
+        wait(for: [orderBookExpectation, bookInfoExpectation, tradeExpectation], timeout: 30.0)
     }
 
     func testWebSockets() {
