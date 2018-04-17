@@ -1,13 +1,15 @@
 ![](Assets/banner.png?raw=true)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
-### Important Note:
+### Important Note for Bitso API users:
 Tha Bitso API does not follow the reuse release equivalence principle which impose that:
 ```
 Reuse Release Equivalence Principle. ... The granule of reuse is the granule of release. Only components that are released through a tracking system can effectively be reused. This granule is the package.
 ```
 
 This means that as a Bitso API user I'm not protected from changes in the API. 
+
+So I'm deffering the development of this framework until this issue is fixed.
 
 ### How to use
 
