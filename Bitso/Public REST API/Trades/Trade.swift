@@ -16,7 +16,7 @@ public struct Trade : Codable {
 	let book : String
 	let creationTimestamp : String
 	let amount : String
-	let makerSide : String
+	let makerSide : String?
 	let price : String
     let tid : Int
 
@@ -35,7 +35,7 @@ public struct Trade : Codable {
 		book = try values.decode(String.self, forKey: .book)
 		creationTimestamp = try values.decode(String.self, forKey: .creationTimestamp)
 		amount = try values.decode(String.self, forKey: .amount)
-		makerSide = try values.decode(String.self, forKey: .makerSide)
+		makerSide = try values.decodeIfPresent(String.self, forKey: .makerSide)
 		price = try values.decode(String.self, forKey: .price)
         tid = try values.decode(Int.self, forKey: .tid)
 	}
