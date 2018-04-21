@@ -9,7 +9,7 @@ Reuse Release Equivalence Principle. ... The granule of reuse is the granule of 
 
 This means that as a Bitso API user I'm not protected from changes in the API. 
 
-So I'm deffering the development of this framework until this issue is fixed.
+The best way to overcome this for now it's to install the bitso client and use a proxy to sniff the requests made to the API. 
 
 ### How to use
 
