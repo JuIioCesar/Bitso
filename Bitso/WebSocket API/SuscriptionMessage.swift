@@ -14,7 +14,9 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 import Foundation
  
 struct SuscriptionMessage : Codable {
-	let action : String
+	let action : String = "subscribe"
 	let book : String
 	let type : String
 }
+ 
+

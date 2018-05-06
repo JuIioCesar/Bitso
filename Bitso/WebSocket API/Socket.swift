@@ -22,9 +22,16 @@ struct Socket<ResponseType: Codable> {
     private let socket = WebSocket("wss://ws.bitso.com")
     private let suscription: SuscriptionMessage
     private let completion: (ResponseType) -> Void
-    init(suscription: SuscriptionMessage, completion: @escaping (ResponseType) -> Void) {
+    private let failure: (Error) -> Void
+    private let close: (Int, String, Bool) -> Void
+    init(suscription: SuscriptionMessage,
+         completion: @escaping (ResponseType) -> Void,
+         failure: @escaping (Error) -> Void,
+         close: @escaping (Int, String, Bool) -> Void) {
         self.suscription = suscription
         self.completion = completion
+        self.failure = failure
+        self.close = close
         setEvents()
     }
     
@@ -37,10 +44,10 @@ struct Socket<ResponseType: Codable> {
             self.socket.send(text: self.suscription.json)
         }
         socket.event.close = { code, reason, clean in
-            print("close")
+            self.close(code, reason, clean)
         }
         socket.event.error = { error in
-            print("error \(error)")
+            self.failure(error)
         }
         socket.event.message = { message in
             if let text = message as? String,

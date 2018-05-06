@@ -64,7 +64,36 @@ class BitsoTests: XCTestCase {
         let webSocketExpectation = expectation(description: "webSocketExpectation")
         let getAvailableBooksTask = bitso.getAvailableBooksTask(success:{ (books) in
             guard let book = books.payload.first else { return }
-            self.bitso.webSocket(with: book)
+//            self.bitso.tradesStream(with: book, success: { (response) in
+//                response.payload.forEach({ (message) in
+//                    print(message.rate)
+//                })
+//            }, failure: { (error) in
+//                print(error)
+//            }, close: { (code, cause, clean) in
+//
+//            })
+//            self.bitso.ordersStream(with: book, success: { (response) in
+//                response.payload.asks.forEach({ (ask) in
+//                    print("\(ask.amount)")
+//                })
+//                response.payload.bids.forEach({ (ask) in
+//                    print("\(ask.amount)")
+//                })
+//            }, failure: { (error) in
+//
+//            }, close: { (code, message, clean) in
+//
+//            })
+            self.bitso.diffOrdersStream(with: book, success: { (response) in
+                response.payload.forEach({ (message) in
+                    print(message.status)
+                })
+            }, failure: { (error) in
+                
+            }, close: { (code, message, clean) in
+                
+            })
         }, failure: { error in  })
         getAvailableBooksTask.resume()
         wait(for: [webSocketExpectation], timeout: 3600.0)
