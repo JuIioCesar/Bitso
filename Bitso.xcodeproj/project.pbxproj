@@ -312,10 +312,10 @@
 			isa = PBXGroup;
 			children = (
 				6CAB4F7320A149A9000FC8D2 /* WithdrawalFees.swift */,
-				6CAB4F7C20A14C9E000FC8D2 /* FeesEnpoint.swift */,
 				6CAB4F7220A149A9000FC8D2 /* Fees.swift */,
 				6CAB4F7520A149AA000FC8D2 /* FeesContainer.swift */,
 				6CAB4F7420A149AA000FC8D2 /* FeesResponse.swift */,
+				6CAB4F7C20A14C9E000FC8D2 /* FeesEnpoint.swift */,
 			);
 			path = Fees;
 			sourceTree = "<group>";
