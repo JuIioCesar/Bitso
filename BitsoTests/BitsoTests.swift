@@ -73,27 +73,27 @@ class BitsoTests: XCTestCase {
 //            }, close: { (code, cause, clean) in
 //
 //            })
-//            self.bitso.ordersStream(with: book, success: { (response) in
-//                response.payload.asks.forEach({ (ask) in
-//                    print("\(ask.amount)")
-//                })
-//                response.payload.bids.forEach({ (ask) in
-//                    print("\(ask.amount)")
+            self.bitso.ordersStream(with: book, success: { (response) in
+                response.payload.asks.forEach({ (ask) in
+                    print("Venta: \(ask.rate) \(ask.amount) \(book.book)")
+                })
+                response.payload.bids.forEach({ (bid) in
+                    print("Compra: \(bid.rate) \(bid.amount) \(book.book)")
+                })
+            }, failure: { (error) in
+
+            }, close: { (code, message, clean) in
+
+            })
+//            self.bitso.diffOrdersStream(with: book, success: { (response) in
+//                response.payload.forEach({ (message) in
+//                    print(message.)
 //                })
 //            }, failure: { (error) in
 //
 //            }, close: { (code, message, clean) in
 //
 //            })
-            self.bitso.diffOrdersStream(with: book, success: { (response) in
-                response.payload.forEach({ (message) in
-                    print(message.status)
-                })
-            }, failure: { (error) in
-                
-            }, close: { (code, message, clean) in
-                
-            })
         }, failure: { error in  })
         getAvailableBooksTask.resume()
         wait(for: [webSocketExpectation], timeout: 3600.0)

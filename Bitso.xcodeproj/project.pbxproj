@@ -44,6 +44,12 @@
 		42C168531FD4D2E8007D96AD /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 42C168521FD4D2E8007D96AD /* README.md */; };
 		42ED24CB1FDD8E440097B63E /* BitsoErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ED24C91FDD8E440097B63E /* BitsoErrorResponse.swift */; };
 		42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42ED24CA1FDD8E440097B63E /* BitsoError.swift */; };
+		6CAB4F7120A1462C000FC8D2 /* BitsoAPI+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB4F7020A1462C000FC8D2 /* BitsoAPI+Private.swift */; };
+		6CAB4F7620A149AA000FC8D2 /* Fees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB4F7220A149A9000FC8D2 /* Fees.swift */; };
+		6CAB4F7720A149AA000FC8D2 /* WithdrawalFees.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB4F7320A149A9000FC8D2 /* WithdrawalFees.swift */; };
+		6CAB4F7820A149AA000FC8D2 /* FeesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB4F7420A149AA000FC8D2 /* FeesResponse.swift */; };
+		6CAB4F7920A149AA000FC8D2 /* FeesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB4F7520A149AA000FC8D2 /* FeesContainer.swift */; };
+		6CAB4F7D20A14C9E000FC8D2 /* FeesEnpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAB4F7C20A14C9E000FC8D2 /* FeesEnpoint.swift */; };
 		6CCBFAAD209E98C500069659 /* BitsoAPI+Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCBFAAC209E98C500069659 /* BitsoAPI+Public.swift */; };
 		6CCBFAAF209E98D900069659 /* BitsoAPI+Websockets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCBFAAE209E98D900069659 /* BitsoAPI+Websockets.swift */; };
 		6CCBFAB1209E998300069659 /* SuscriptionMessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCBFAB0209E998300069659 /* SuscriptionMessageType.swift */; };
@@ -100,6 +106,12 @@
 		42C168521FD4D2E8007D96AD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		42ED24C91FDD8E440097B63E /* BitsoErrorResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsoErrorResponse.swift; sourceTree = "<group>"; };
 		42ED24CA1FDD8E440097B63E /* BitsoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitsoError.swift; sourceTree = "<group>"; };
+		6CAB4F7020A1462C000FC8D2 /* BitsoAPI+Private.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitsoAPI+Private.swift"; sourceTree = "<group>"; };
+		6CAB4F7220A149A9000FC8D2 /* Fees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fees.swift; sourceTree = "<group>"; };
+		6CAB4F7320A149A9000FC8D2 /* WithdrawalFees.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WithdrawalFees.swift; sourceTree = "<group>"; };
+		6CAB4F7420A149AA000FC8D2 /* FeesResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeesResponse.swift; sourceTree = "<group>"; };
+		6CAB4F7520A149AA000FC8D2 /* FeesContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeesContainer.swift; sourceTree = "<group>"; };
+		6CAB4F7C20A14C9E000FC8D2 /* FeesEnpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeesEnpoint.swift; sourceTree = "<group>"; };
 		6CCBFAAC209E98C500069659 /* BitsoAPI+Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitsoAPI+Public.swift"; sourceTree = "<group>"; };
 		6CCBFAAE209E98D900069659 /* BitsoAPI+Websockets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitsoAPI+Websockets.swift"; sourceTree = "<group>"; };
 		6CCBFAB0209E998300069659 /* SuscriptionMessageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuscriptionMessageType.swift; sourceTree = "<group>"; };
@@ -191,11 +203,6 @@
 		427ECBDE1FDDDD6900449A1F /* Endpoints */ = {
 			isa = PBXGroup;
 			children = (
-				427ECBCE1FDDDC8800449A1F /* Enpoint.swift */,
-				427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */,
-				427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */,
-				427ECBD41FDDDCBB00449A1F /* OrderBookEndpoint.swift */,
-				427ECBD61FDDDCCA00449A1F /* TradesEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -227,12 +234,15 @@
 				42C1681F1FD4D095007D96AD /* Bitso.h */,
 				42ED24CD1FDD8E4B0097B63E /* Error */,
 				425BA2761FE07EB4009105E3 /* Public REST API */,
+				6CAB4F7B20A14C26000FC8D2 /* Private API */,
 				425BA2731FE07D4E009105E3 /* WebSocket API */,
 				427ECBDA1FDDDD0E00449A1F /* URLSession+JSONDecodable.swift */,
 				427ECBDC1FDDDD2B00449A1F /* URLComponents+Bitso.swift */,
+				427ECBCE1FDDDC8800449A1F /* Enpoint.swift */,
 				427ECBD81FDDDCEA00449A1F /* BitsoAPI.swift */,
 				6CCBFAAC209E98C500069659 /* BitsoAPI+Public.swift */,
 				6CCBFAAE209E98D900069659 /* BitsoAPI+Websockets.swift */,
+				6CAB4F7020A1462C000FC8D2 /* BitsoAPI+Private.swift */,
 				42C168201FD4D095007D96AD /* Info.plist */,
 			);
 			path = Bitso;
@@ -254,6 +264,7 @@
 				42C168381FD4D0B6007D96AD /* Bid.swift */,
 				42C168391FD4D0B6007D96AD /* OrderBook.swift */,
 				42C1683A1FD4D0B6007D96AD /* OrderBookResponse.swift */,
+				427ECBD41FDDDCBB00449A1F /* OrderBookEndpoint.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -263,6 +274,7 @@
 			children = (
 				42C1683C1FD4D0B6007D96AD /* Ticker.swift */,
 				42C1683D1FD4D0B6007D96AD /* TickerResponse.swift */,
+				427ECBD21FDDDCA700449A1F /* TickerEndpoint.swift */,
 			);
 			path = Ticker;
 			sourceTree = "<group>";
@@ -272,6 +284,7 @@
 			children = (
 				42C1683F1FD4D0B6007D96AD /* Trade.swift */,
 				42C168401FD4D0B6007D96AD /* TradesResponse.swift */,
+				427ECBD61FDDDCCA00449A1F /* TradesEndpoint.swift */,
 			);
 			path = Trades;
 			sourceTree = "<group>";
@@ -281,6 +294,7 @@
 			children = (
 				42C168441FD4D0B6007D96AD /* Book.swift */,
 				42C168451FD4D0B6007D96AD /* BooksResponse.swift */,
+				427ECBD01FDDDC9800449A1F /* AvailableBooksEndpoint.swift */,
 			);
 			path = Books;
 			sourceTree = "<group>";
@@ -292,6 +306,26 @@
 				42ED24C91FDD8E440097B63E /* BitsoErrorResponse.swift */,
 			);
 			path = Error;
+			sourceTree = "<group>";
+		};
+		6CAB4F7A20A149B1000FC8D2 /* Fees */ = {
+			isa = PBXGroup;
+			children = (
+				6CAB4F7320A149A9000FC8D2 /* WithdrawalFees.swift */,
+				6CAB4F7C20A14C9E000FC8D2 /* FeesEnpoint.swift */,
+				6CAB4F7220A149A9000FC8D2 /* Fees.swift */,
+				6CAB4F7520A149AA000FC8D2 /* FeesContainer.swift */,
+				6CAB4F7420A149AA000FC8D2 /* FeesResponse.swift */,
+			);
+			path = Fees;
+			sourceTree = "<group>";
+		};
+		6CAB4F7B20A14C26000FC8D2 /* Private API */ = {
+			isa = PBXGroup;
+			children = (
+				6CAB4F7A20A149B1000FC8D2 /* Fees */,
+			);
+			path = "Private API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,12 +474,15 @@
 				42ED24CC1FDD8E440097B63E /* BitsoError.swift in Sources */,
 				425BA27A1FE07EE7009105E3 /* TradesChannelMessageResponse.swift in Sources */,
 				427ECBD11FDDDC9800449A1F /* AvailableBooksEndpoint.swift in Sources */,
+				6CAB4F7120A1462C000FC8D2 /* BitsoAPI+Private.swift in Sources */,
+				6CAB4F7920A149AA000FC8D2 /* FeesContainer.swift in Sources */,
 				42C168511FD4D0B6007D96AD /* BooksResponse.swift in Sources */,
 				425BA2721FE07860009105E3 /* SuscriptionMessage.swift in Sources */,
 				42C168501FD4D0B6007D96AD /* Book.swift in Sources */,
 				427ECBD31FDDDCA700449A1F /* TickerEndpoint.swift in Sources */,
 				42ED24CB1FDD8E440097B63E /* BitsoErrorResponse.swift in Sources */,
 				42C168461FD4D0B6007D96AD /* Ask.swift in Sources */,
+				6CAB4F7820A149AA000FC8D2 /* FeesResponse.swift in Sources */,
 				427ECBD51FDDDCBB00449A1F /* OrderBookEndpoint.swift in Sources */,
 				4256D14A1FE1759A00CBC02D /* WebSocketBid.swift in Sources */,
 				6CCBFAAD209E98C500069659 /* BitsoAPI+Public.swift in Sources */,
@@ -453,10 +490,13 @@
 				427ECBD71FDDDCCA00449A1F /* TradesEndpoint.swift in Sources */,
 				4256D1431FE16D2D00CBC02D /* OrdersChannelMessageResponse.swift in Sources */,
 				425BA2791FE07EE7009105E3 /* TradesChannelMessage.swift in Sources */,
+				6CAB4F7620A149AA000FC8D2 /* Fees.swift in Sources */,
 				42C1684A1FD4D0B6007D96AD /* Ticker.swift in Sources */,
+				6CAB4F7720A149AA000FC8D2 /* WithdrawalFees.swift in Sources */,
 				42C168481FD4D0B6007D96AD /* OrderBook.swift in Sources */,
 				425BA2751FE07E2D009105E3 /* ServerSubscriptionResponseMessage.swift in Sources */,
 				42C1684B1FD4D0B6007D96AD /* TickerResponse.swift in Sources */,
+				6CAB4F7D20A14C9E000FC8D2 /* FeesEnpoint.swift in Sources */,
 				6CCBFAB1209E998300069659 /* SuscriptionMessageType.swift in Sources */,
 				4256D14B1FE1759A00CBC02D /* WebSocketAsk.swift in Sources */,
 				42C168471FD4D0B6007D96AD /* Bid.swift in Sources */,
