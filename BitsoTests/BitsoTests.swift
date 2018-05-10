@@ -98,4 +98,14 @@ class BitsoTests: XCTestCase {
         getAvailableBooksTask.resume()
         wait(for: [webSocketExpectation], timeout: 3600.0)
     }
+    
+    func testGetFees() {
+        let getFeesExpectation = expectation(description: "getFeesExpectation")
+        let task = bitso.getFeesTask(success: { (response) in
+            getFeesExpectation.fulfill()
+        }) { (error) in
+        }
+        task.resume()
+        wait(for: [getFeesExpectation], timeout: 30.0)
+    }
 }

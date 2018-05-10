@@ -10,13 +10,15 @@ import Foundation
 
 extension URLSession {
     func decodeJSONTask<T: Decodable>(from endpoint: Endpoint,
+                                      authorization: Authorization? = nil,
+                                      contentType: ContentType? = nil,
                                       success: @escaping (T) -> Void,
                                       failure: @escaping (BitsoError?) -> Void) -> URLSessionTask {
         var components = URLComponents.bitso
         components.path = endpoint.path
         components.queryItems = endpoint.queryItems
         assert(components.url != nil, "URL components couldn't be formed. Please check your URLComponents.")
-        let request = URLRequest(url: components.url!)
+        let request = URLRequest.make(url: components.url!, authorization: authorization, contentType: contentType)
         let task = dataTask(with: request) { (data, _, _) in
             guard let data = data else {
                 failure(nil)
